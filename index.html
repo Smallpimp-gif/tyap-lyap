@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Mark that JS is available; reveal animations only hide content when this is set -->
+  <script>document.documentElement.classList.add('js');</script>
+
+  <title>ТЯП-ЛЯП — дизайнерский ремонт без переплат · Москва и область</title>
+  <meta name="description" content="ТЯП-ЛЯП — студия дизайнерского ремонта под ключ в Москве и области. Минимализм, лофт, честные материалы и правильный свет. Красиво и недорого: ровный до миллиметра потолок влияет только на цену." />
+  <meta name="theme-color" content="#1A1714" />
+  <meta name="author" content="ТЯП-ЛЯП" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="ru_RU" />
+  <meta property="og:site_name" content="ТЯП-ЛЯП" />
+  <meta property="og:title" content="ТЯП-ЛЯП — дизайнерский ремонт без переплат" />
+  <meta property="og:description" content="Студия дизайнерского ремонта под ключ. Минимализм, лофт, честные материалы и правильный свет. Москва и область." />
+  <meta property="og:image" content="assets/img/hero.jpg" />
+  <meta property="og:url" content="https://tyap-lyap.ru" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" href="favicon.png?v=3" type="image/png" />
+  <link rel="apple-touch-icon" href="favicon.png?v=3" />
+  <link rel="canonical" href="https://tyap-lyap.ru" />
+
+  <!-- Body = system Helvetica stack (no webfont). One webfont: Playfair Display Italic for .ser accent words (Cyrillic). -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,500;1,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css?v=41" />
+</head>
+
+<body>
+  <a class="skip-link" href="#projects">Перейти к проектам</a>
+
+  <!-- ============ HEADER ============ -->
+  <header class="header" id="header">
+    <div class="header__inner">
+      <a href="#top" class="logo" aria-label="ТЯП-ЛЯП — на главную">
+        <img class="logo__img" src="assets/img/logo.png" alt="ТЯП-ЛЯП" />
+      </a>
+
+      <nav class="nav" aria-label="Основная навигация">
+        <a href="#manifesto" class="nav__link">Манифест</a>
+        <a href="#projects" class="nav__link">Проекты</a>
+        <a href="#approach" class="nav__link">Подход</a>
+        <a href="#process" class="nav__link">Процесс</a>
+        <a href="#about" class="nav__link">Студия</a>
+        <a href="#contact" class="nav__link">Контакты</a>
+      </nav>
+
+      <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="menu">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ============ MOBILE MENU ============ -->
+  <div class="menu" id="menu" aria-hidden="true">
+    <nav class="menu__nav" aria-label="Мобильная навигация">
+      <a href="#manifesto" class="menu__link"><span class="menu__num">01</span>Манифест</a>
+      <a href="#projects" class="menu__link"><span class="menu__num">02</span>Проекты</a>
+      <a href="#approach" class="menu__link"><span class="menu__num">03</span>Подход</a>
+      <a href="#process" class="menu__link"><span class="menu__num">04</span>Процесс</a>
+      <a href="#about" class="menu__link"><span class="menu__num">05</span>Студия</a>
+      <a href="#contact" class="menu__link"><span class="menu__num">06</span>Контакты</a>
+    </nav>
+    <div class="menu__foot">
+      <a href="tel:+74950000000">+7 (495) 000-00-00</a>
+      <a href="mailto:privet@tyap-lyap.ru">privet@tyap-lyap.ru</a>
+    </div>
+  </div>
+
+  <main id="top">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="hero">
+      <h1 class="hero__logo" data-reveal>
+        <img src="assets/img/logo.png" alt="ТЯП-ЛЯП — дизайнерский ремонт" />
+      </h1>
+      <p class="hero__tagline" data-reveal style="--d:.18s">Дизайнерский ремонт без&nbsp;переплат — Москва и&nbsp;область</p>
+    </section>
+
+    <!-- ============ GALLERY (projects) ============ -->
+    <section class="gallery" id="projects" aria-label="Проекты">
+      <h2 class="visually-hidden">Проекты</h2>
+      <div class="gallery__grid">
+        <a class="gitem" href="#contact">
+          <span class="gitem__media"><img src="assets/img/project-01.jpg" width="1200" height="1600" alt="Кухня-гостиная с бетонными стенами и каменным островом" loading="lazy" decoding="async" /></span>
+          <span class="gitem__cap"><span><b>001</b>&nbsp;&nbsp;Кухня в&nbsp;бетоне</span><i>Москва · 48&nbsp;м²</i></span>
+        </a>
+        <a class="gitem" href="#contact">
+          <span class="gitem__media"><img src="assets/img/project-04.jpg" width="1600" height="1002" alt="Кирпичный лофт с подвесными светильниками" loading="lazy" decoding="async" /></span>
+          <span class="gitem__cap"><span><b>002</b>&nbsp;&nbsp;Кирпичный лофт</span><i>Москва · 61&nbsp;м²</i></span>
+        </a>
+        <a class="gitem" href="#contact">
+          <span class="gitem__media"><img src="assets/img/project-02.jpg" width="900" height="1600" alt="Минимализм при линейном свете" loading="lazy" decoding="async" /></span>
+          <span class="gitem__cap"><span><b>003</b>&nbsp;&nbsp;Свет и&nbsp;тишина</span><i>Химки · 36&nbsp;м²</i></span>
+        </a>
+        <a class="gitem" href="#contact">
+          <span class="gitem__media"><img src="assets/img/project-03.jpg" width="1066" height="1600" alt="Тёплый минимализм с деревом и бетоном" loading="lazy" decoding="async" /></span>
+          <span class="gitem__cap"><span><b>004</b>&nbsp;&nbsp;Тёплый минимализм</span><i>Балашиха · 42&nbsp;м²</i></span>
+        </a>
+        <a class="gitem" href="#contact">
+          <span class="gitem__media"><img src="assets/img/project-06.jpg" width="1200" height="1600" alt="Гостиная на бетоне" loading="lazy" decoding="async" /></span>
+          <span class="gitem__cap"><span><b>005</b>&nbsp;&nbsp;Гостиная на&nbsp;бетоне</span><i>Москва · 53&nbsp;м²</i></span>
+        </a>
+        <a class="gitem" href="#contact">
+          <span class="gitem__media"><img src="assets/img/project-05.jpg" width="1600" height="1200" alt="Спальня без лишнего" loading="lazy" decoding="async" /></span>
+          <span class="gitem__cap"><span><b>006</b>&nbsp;&nbsp;Спальня без лишнего</span><i>Химки · 18&nbsp;м²</i></span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ============ MANIFESTO ============ -->
+    <section class="manifesto section" id="manifesto">
+      <p class="label" data-reveal>(02) — Манифест</p>
+      <h2 class="manifesto__text" data-reveal>
+        «Тяп-ляп» обычно значит <span class="ser">«как‑нибудь»</span>. У&nbsp;нас&nbsp;— наоборот.
+        Это про&nbsp;<span class="hl">скорость</span>, честную цену и&nbsp;дизайн, который
+        <span class="ser">не&nbsp;стыдно</span> показывать. Без позолоты, лепнины
+        и&nbsp;царских кресел&nbsp;— камень, дерево, кирпич, бетон и&nbsp;правильный свет.
+      </h2>
+      <div class="manifesto__foot">
+        <p data-reveal>
+          Мы&nbsp;делаем ремонт для тех, кто купил квартиру без отделки и&nbsp;не&nbsp;готов
+          переплачивать за&nbsp;идеально выровненный потолок. Создаём пространство для&nbsp;жизни,
+          а&nbsp;не&nbsp;для&nbsp;захламления.
+        </p>
+        <a href="#approach" class="link-underline" data-reveal>Как получается красиво и&nbsp;недорого <span class="arrow">→</span></a>
+      </div>
+    </section>
+
+    <!-- ============ APPROACH ============ -->
+    <section class="approach section" id="approach">
+      <div class="section__head">
+        <div>
+          <p class="label" data-reveal>(04) — Подход</p>
+          <h2 class="section__title" data-reveal>Почему получается<br>красиво и&nbsp;недорого</h2>
+        </div>
+        <p class="section__intro" data-reveal>
+          Мы&nbsp;не&nbsp;экономим на&nbsp;том, что видно. Мы&nbsp;экономим на&nbsp;том, что
+          не&nbsp;влияет ни&nbsp;на&nbsp;что, кроме цены.
+        </p>
+      </div>
+
+      <ol class="principles">
+        <li class="principle" data-reveal>
+          <span class="principle__num">01</span>
+          <h3 class="principle__title">Свет</h3>
+          <p class="principle__text">
+            Продуманный сценарий освещения меняет восприятие пространства сильнее,
+            чем дорогая отделка. Свет&nbsp;— наш главный материал.
+          </p>
+        </li>
+        <li class="principle" data-reveal style="--d:.06s">
+          <span class="principle__num">02</span>
+          <h3 class="principle__title">Материалы</h3>
+          <p class="principle__text">
+            Камень, дерево, кирпич, бетон. Честная фактура вместо турецкого пластика,
+            позолоты и&nbsp;цыганщины.
+          </p>
+        </li>
+        <li class="principle" data-reveal style="--d:.12s">
+          <span class="principle__num">03</span>
+          <h3 class="principle__title">Скорость</h3>
+          <p class="principle__text">
+            Дизайн и&nbsp;смета заранее, чёткий план работ. Без бесконечных переделок
+            и&nbsp;сюрпризов в&nbsp;конце.
+          </p>
+        </li>
+        <li class="principle" data-reveal style="--d:.18s">
+          <span class="principle__num">04</span>
+          <h3 class="principle__title">Честная цена</h3>
+          <p class="principle__text">
+            Экономим на&nbsp;невидимом и&nbsp;незначимом. Вкладываемся в&nbsp;то,
+            что вы&nbsp;видите и&nbsp;трогаете каждый день.
+          </p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ============ PROCESS ============ -->
+    <section class="process section" id="process">
+      <div class="section__head">
+        <div>
+          <p class="label" data-reveal>(05) — Процесс</p>
+          <h2 class="section__title" data-reveal>Как мы&nbsp;работаем</h2>
+        </div>
+        <p class="section__intro" data-reveal>
+          Прозрачно от&nbsp;первой заявки до&nbsp;уборки после ремонта. Вы&nbsp;всегда знаете,
+          что происходит и&nbsp;сколько это стоит.
+        </p>
+      </div>
+
+      <ol class="steps">
+        <li class="step" data-reveal>
+          <span class="step__num">01</span>
+          <div class="step__body">
+            <h3 class="step__title">Заявка и&nbsp;бриф</h3>
+            <p class="step__text">Созваниваемся, обсуждаем задачу, бюджет и&nbsp;сроки. Бесплатно.</p>
+          </div>
+        </li>
+        <li class="step" data-reveal>
+          <span class="step__num">02</span>
+          <div class="step__body">
+            <h3 class="step__title">Замер и&nbsp;смета</h3>
+            <p class="step__text">Выезжаем на&nbsp;объект, снимаем размеры и&nbsp;готовим понятную смету.</p>
+          </div>
+        </li>
+        <li class="step" data-reveal>
+          <span class="step__num">03</span>
+          <div class="step__body">
+            <h3 class="step__title">Дизайн-решение</h3>
+            <p class="step__text">Планировка, материалы, свет и&nbsp;визуализации&nbsp;— до&nbsp;начала работ.</p>
+          </div>
+        </li>
+        <li class="step" data-reveal>
+          <span class="step__num">04</span>
+          <div class="step__body">
+            <h3 class="step__title">Ремонт под ключ</h3>
+            <p class="step__text">Своя бригада, контроль качества и&nbsp;сроков на&nbsp;каждом этапе.</p>
+          </div>
+        </li>
+        <li class="step" data-reveal>
+          <span class="step__num">05</span>
+          <div class="step__body">
+            <h3 class="step__title">Сдача и&nbsp;уборка</h3>
+            <p class="step__text">Финальная уборка и&nbsp;заселение. Гарантия на&nbsp;работы.</p>
+          </div>
+        </li>
+      </ol>
+
+      <!-- Formats -->
+      <div class="formats">
+        <article class="format" data-reveal>
+          <h3 class="format__title">Дизайн-проект</h3>
+          <p class="format__text">Планировка, 3D-визуализация, подбор материалов и&nbsp;света, чертежи для&nbsp;бригады.</p>
+          <span class="format__price">по&nbsp;запросу</span>
+        </article>
+        <article class="format format--accent" data-reveal style="--d:.06s">
+          <h3 class="format__title">Ремонт под ключ</h3>
+          <p class="format__text">Полный цикл: от&nbsp;демонтажа до&nbsp;финишной отделки и&nbsp;уборки. Дизайн&nbsp;+&nbsp;работа.</p>
+          <span class="format__price">от&nbsp;сметы</span>
+        </article>
+        <article class="format" data-reveal style="--d:.12s">
+          <h3 class="format__title">Флиппинг</h3>
+          <p class="format__text">Предпродажная подготовка квартиры: быстро, недорого, с&nbsp;ростом стоимости.</p>
+          <span class="format__price">индивидуально</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="about section" id="about">
+      <figure class="about__media" data-reveal>
+        <img src="assets/img/about.jpg" alt="Дизайнер за работой над макетом проекта" loading="lazy" decoding="async" />
+        <figcaption class="about__cap">Студия · работа над проектом</figcaption>
+      </figure>
+
+      <div class="about__body">
+        <p class="label" data-reveal>(06) — Студия</p>
+        <h2 class="about__title" data-reveal>
+          Молодая студия с&nbsp;<span class="ser">опытом</span> за&nbsp;плечами.
+        </h2>
+        <p class="about__text" data-reveal>
+          ТЯП-ЛЯП вырос из&nbsp;законченных проектов дизайнера
+          <strong>Никиты&nbsp;Ковалёва</strong>. Мы&nbsp;поверили в&nbsp;простую идею: ремонт
+          не&nbsp;обязан быть дорогим, чтобы быть красивым и&nbsp;уютным. Достаточно
+          правильного дизайна, хорошего света и&nbsp;честных материалов.
+        </p>
+        <p class="about__text" data-reveal style="--d:.06s">
+          Работаем в&nbsp;Москве и&nbsp;Московской области. Любим камень, дерево, кирпич
+          и&nbsp;бетон&nbsp;— и&nbsp;не&nbsp;любим вульгарщину, нагромождение и&nbsp;«дорого-богато».
+        </p>
+        <div class="about__links" data-reveal style="--d:.12s">
+          <a href="https://kovalevnikita.ru/" target="_blank" rel="noopener" class="link-underline">
+            Портфолио дизайнера <span class="arrow">↗</span>
+          </a>
+        </div>
+
+        <div class="about__stats">
+          <div class="stat" data-reveal>
+            <span class="stat__num">7+</span>
+            <span class="stat__label">лет в&nbsp;дизайне</span>
+          </div>
+          <div class="stat" data-reveal style="--d:.06s">
+            <span class="stat__num">МО</span>
+            <span class="stat__label">Москва и&nbsp;область</span>
+          </div>
+          <div class="stat" data-reveal style="--d:.12s">
+            <span class="stat__num">0%</span>
+            <span class="stat__label">позолоты и&nbsp;цыганщины</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT / CTA ============ -->
+    <section class="contact section" id="contact">
+      <div class="contact__bg" aria-hidden="true">
+        <img src="assets/img/band-cta.jpg" alt="" loading="lazy" decoding="async" />
+      </div>
+
+      <div class="contact__inner">
+        <div class="contact__lead">
+          <p class="label label--light" data-reveal>(07) — Контакты</p>
+          <h2 class="contact__title" data-reveal>
+            Расскажите про&nbsp;вашу <span class="ser">квартиру</span>
+          </h2>
+          <p class="contact__sub" data-reveal>
+            Посчитаем смету и&nbsp;предложим решение. Без навязывания и&nbsp;воды&nbsp;—
+            по&nbsp;делу.
+          </p>
+
+          <div class="contact__direct" data-reveal style="--d:.08s">
+            <a href="tel:+74950000000" class="contact__line">
+              <span class="contact__k">Телефон</span><span class="contact__v">+7 (495) 000-00-00</span>
+            </a>
+            <a href="mailto:privet@tyap-lyap.ru" class="contact__line">
+              <span class="contact__k">Почта</span><span class="contact__v">privet@tyap-lyap.ru</span>
+            </a>
+            <a href="https://t.me/tyaplyap" target="_blank" rel="noopener" class="contact__line">
+              <span class="contact__k">Telegram</span><span class="contact__v">@tyaplyap</span>
+            </a>
+            <div class="contact__line contact__line--static">
+              <span class="contact__k">Где</span><span class="contact__v">Москва и&nbsp;Московская область</span>
+            </div>
+          </div>
+        </div>
+
+        <form class="form" id="leadForm" novalidate data-reveal style="--d:.12s">
+          <div class="field">
+            <label for="name">Как вас зовут</label>
+            <input type="text" id="name" name="name" placeholder="Имя" autocomplete="name" required />
+          </div>
+          <div class="field">
+            <label for="contact-info">Телефон или email</label>
+            <input type="text" id="contact-info" name="contact" placeholder="+7 ··· или you@mail.ru" autocomplete="tel" required />
+          </div>
+          <div class="field">
+            <label for="area">Площадь / коротко о&nbsp;задаче</label>
+            <textarea id="area" name="message" rows="3" placeholder="Например: 48 м², черновая, нужен дизайн + ремонт под ключ"></textarea>
+          </div>
+          <button type="submit" class="btn btn--solid btn--block">
+            <span class="btn__label">Отправить заявку</span>
+          </button>
+          <p class="form__note">Нажимая кнопку, вы&nbsp;соглашаетесь с&nbsp;<a href="#">политикой конфиденциальности</a>.</p>
+          <p class="form__success" id="formSuccess" role="status" hidden>
+            Спасибо! Заявка отправлена&nbsp;— свяжемся с&nbsp;вами в&nbsp;ближайшее время.
+          </p>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="footer__brand" data-reveal>
+      <img class="footer__logo" src="assets/img/logo.png" alt="ТЯП-ЛЯП" />
+    </div>
+
+    <div class="footer__cols">
+      <div class="footer__col">
+        <span class="footer__h">Навигация</span>
+        <a href="#projects">Проекты</a>
+        <a href="#approach">Подход</a>
+        <a href="#process">Процесс</a>
+        <a href="#about">Студия</a>
+      </div>
+      <div class="footer__col">
+        <span class="footer__h">Контакты</span>
+        <a href="tel:+74950000000">+7 (495) 000-00-00</a>
+        <a href="mailto:privet@tyap-lyap.ru">privet@tyap-lyap.ru</a>
+        <a href="https://t.me/tyaplyap" target="_blank" rel="noopener">Telegram</a>
+        <a href="https://wa.me/74950000000" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+      <div class="footer__col">
+        <span class="footer__h">Студия</span>
+        <span class="footer__static">Москва и&nbsp;область</span>
+        <span class="footer__static">tyap-lyap.ru</span>
+        <a href="https://kovalevnikita.ru/" target="_blank" rel="noopener">Дизайнер ↗</a>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span>© <span id="year">2026</span> ТЯП-ЛЯП · Дизайнерский ремонт</span>
+      <!-- Dev credit per ТЗ: постоянная подпись разработчика -->
+      <span class="footer__credit">Дизайн&nbsp;и&nbsp;разработка&nbsp;— semenovfolders</span>
+    </div>
+  </footer>
+
+  <!-- Cookie consent bar (shown until accepted; choice stored in localStorage) -->
+  <div class="cookie" id="cookie" hidden>
+    <p class="cookie__text">Мы&nbsp;используем файлы&nbsp;cookie, чтобы сайт работал лучше. Продолжая пользоваться сайтом, вы&nbsp;соглашаетесь с&nbsp;<a href="#" class="cookie__link">политикой&nbsp;конфиденциальности</a>.</p>
+    <button class="btn btn--solid cookie__btn" id="cookieAccept" type="button">Принять</button>
+  </div>
+
+  <script src="assets/js/main.js?v=17"></script>
+  <script>
+    /* Fail-safe: if the main script never ran (failed to load, error, etc.),
+       remove the loader so the page is never stuck behind it. Content itself
+       is visible by default, so nothing else needs doing here. */
+    setTimeout(function () {
+      if (window.__tlReady) return;
+      var p = document.getElementById('preloader');
+      if (p && p.parentNode) p.parentNode.removeChild(p);
+    }, 2300);
+  </script>
+</body>
+</html>

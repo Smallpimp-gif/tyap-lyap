@@ -1,0 +1,8 @@
+# OS
+.DS_Store
+
+# Local backup snapshot (not part of the published site)
+_backup-*/
+
+# Local dev tooling (no-cache preview server)
+.claude/
