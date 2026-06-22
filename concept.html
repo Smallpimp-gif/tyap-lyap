@@ -51,21 +51,17 @@
       max-width:36ch;color:#fff;font-size:clamp(11px,1.1vw,13px);line-height:1.5;text-align:justify}
 
     /* hero is a full-screen retro-poster seam */
-    /* HERO — retro KNOCKOUT: photo shows THROUGH the giant word (background-clip:text) */
+    /* HERO — retro KNOCKOUT (SVG mask): the word is a HOLE in the black panel,
+       revealing the ONE photo behind it → no second image, no mismatch, no fixed bg */
     .hero.knock{position:relative;height:100svh;min-height:580px;overflow:hidden;
       background:#000;--panelH:clamp(250px,48vh,520px)}
-    /* photo as a fixed cover background — same as the word fill below, so they match exactly */
-    .kphoto{position:absolute;inset:0;z-index:0;background:url("assets/img/hero.jpg") center center/cover fixed}
+    .kphoto{position:absolute;inset:0;z-index:0}
+    .kphoto img{width:100%;height:100%;object-fit:cover}
     .kphoto::after{content:"";position:absolute;left:0;right:0;bottom:0;height:38%;
       background:linear-gradient(transparent,rgba(0,0,0,.6))}
-    .kpanel{position:absolute;top:0;left:0;right:0;height:var(--panelH);background:#000;z-index:1}
-    /* the word is filled with the photo, fixed to the viewport so it lines up with the open photo */
-    .kword{position:absolute;top:var(--panelH);left:0;right:0;transform:translateY(-82%);z-index:2;margin:0;
-      text-align:center;font-weight:900;font-size:clamp(74px,19vw,310px);line-height:.78;
-      letter-spacing:-.05em;text-transform:uppercase;
-      background-image:url("assets/img/hero.jpg");background-size:cover;background-position:center;
-      background-attachment:fixed;-webkit-background-clip:text;background-clip:text;
-      color:transparent;-webkit-text-fill-color:transparent}
+    .kcut{position:absolute;top:0;left:0;width:100%;height:var(--panelH);z-index:1;pointer-events:none}
+    .kcut text{font-family:'Inter Tight','Helvetica Neue',Arial,sans-serif;font-weight:900;
+      font-size:clamp(74px,19vw,310px);letter-spacing:-.05em}
     .kmeta{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;justify-content:space-between;
       padding-block:clamp(16px,2.3vw,28px);color:#fff}
     .kmeta .seam__head b{color:#fff}
@@ -149,14 +145,14 @@
       transition-delay:calc(var(--i,0)*.07s);will-change:opacity,transform}
     html.anim-ready :is(.shot,.seam__photo){clip-path:inset(0 0 100% 0);
       transition:clip-path 1.05s var(--ease);transition-delay:calc(var(--i,0)*.07s);will-change:clip-path}
-    html.anim-ready :is(.seam__word,.kword){opacity:0;transition:opacity 1s var(--ease);transition-delay:.12s;will-change:opacity} /* opacity only — keeps straddle transform */
-    html.anim-ready :is(.seam__word,.kword).in{opacity:1;will-change:auto}
+    html.anim-ready .seam__word{opacity:0;transition:opacity 1s var(--ease);transition-delay:.12s;will-change:opacity} /* opacity only — keeps straddle transform */
+    html.anim-ready .seam__word.in{opacity:1;will-change:auto}
     html.anim-ready :is(.meta3,.display,h2:not(.seam__word),.addr,.marks,.say__grid,.proj__sub,.contact__grid,.seam__meta,.shot,.seam__photo).in{
       opacity:1;transform:none;clip-path:inset(0 0 0 0);will-change:auto}
     @media(prefers-reduced-motion:reduce){
       html.anim-ready :is(.meta3,.display,h2:not(.seam__word),.addr,.marks,.say__grid,.proj__sub,.contact__grid,.seam__meta,.shot,.seam__photo){
         opacity:1!important;transform:none!important;clip-path:none!important;transition:none!important}
-      html.anim-ready :is(.seam__word,.kword){opacity:1!important;transition:none!important}
+      html.anim-ready .seam__word{opacity:1!important;transition:none!important}
     }
 
     .cta{position:fixed;right:clamp(14px,2.4vw,28px);bottom:clamp(14px,2.4vw,28px);z-index:80;
@@ -185,10 +181,16 @@
 
   <!-- ============ HERO (retro KNOCKOUT: photo shows THROUGH the giant word) ============ -->
   <section class="hero knock">
-    <div class="kphoto" role="img" aria-label="Дизайнерский ремонт под ключ — интерьер"></div>
+    <div class="kphoto"><img src="assets/img/hero.jpg" alt="Дизайнерский ремонт под ключ — интерьер" loading="eager" decoding="async" /></div>
 
-    <div class="kpanel" aria-hidden="true"></div>
-    <h1 class="kword">ТЯП-ЛЯП</h1>
+    <svg class="kcut" preserveAspectRatio="none" aria-hidden="true">
+      <defs><mask id="kmask" maskUnits="userSpaceOnUse">
+        <rect x="0" y="0" width="100%" height="100%" fill="#fff"></rect>
+        <text x="50%" y="100%" dy=".13em" text-anchor="middle" fill="#000">ТЯП-ЛЯП</text>
+      </mask></defs>
+      <rect x="0" y="0" width="100%" height="100%" fill="#0e0e0e" mask="url(#kmask)"></rect>
+    </svg>
+    <h1 class="visually-hidden">ТЯП-ЛЯП — дизайнерский ремонт под ключ</h1>
 
     <div class="kmeta">
       <div class="ktop">
@@ -320,7 +322,7 @@
     var root=document.documentElement;
     if(!root.classList.contains('anim-ready')) return;       // animations disabled → content already visible
     try{
-      var sel='.meta3,.display,h2,.addr,.marks,.say__grid,.proj__sub,.contact__grid,.shot,.seam__meta,.seam__word,.seam__photo,.kword';
+      var sel='.meta3,.display,h2,.addr,.marks,.say__grid,.proj__sub,.contact__grid,.shot,.seam__meta,.seam__word,.seam__photo';
       var els=[].slice.call(document.querySelectorAll(sel));
       if(!els.length){ root.classList.remove('anim-ready'); return; }
       els.forEach(function(el){                               // per-block stagger index
