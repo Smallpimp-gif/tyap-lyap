@@ -4,124 +4,134 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="noindex" />
-  <title>ТЯП-ЛЯП — концепт (швейцарская типографика)</title>
+  <title>ТЯП-ЛЯП — концепт (Swiss typography)</title>
   <link rel="icon" href="favicon.png?v=3" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;800;900&family=Playfair+Display:ital@1&display=swap" rel="stylesheet" />
   <style>
     :root{
-      --ink:#111; --paper:#fff; --mut:#737373; --mut2:#a8a8a8; --line:#e8e8e8;
-      --sans:'Helvetica Neue',Helvetica,Arial,sans-serif; --serif:'Playfair Display',Georgia,serif;
-      --pad:clamp(18px,4vw,52px); --max:1320px;
+      --ink:#0e0e0e; --paper:#fff; --mut:#6f6f6f; --mut2:#a6a6a6; --line:#e6e6e6;
+      --sans:'Inter Tight','Helvetica Neue',Arial,sans-serif; --serif:'Playfair Display',Georgia,serif;
+      --pad:clamp(16px,3.5vw,46px); --max:1320px;
     }
     *{box-sizing:border-box;margin:0;padding:0}
     html{-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
-    body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.55;overflow-x:hidden}
+    body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.5;
+      font-feature-settings:"ss01","cv05";overflow-x:hidden}
     img{display:block;max-width:100%}
     a{color:inherit;text-decoration:none}
     .wrap{max-width:var(--max);margin:0 auto;padding-inline:var(--pad)}
-    .lab{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--mut)}
+    .lab{font-size:clamp(10px,.85vw,12px);font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
 
-    /* shared label row (corner meta, à la 326/365 · PHOTO BY · DESIGN BY) */
-    .top{display:flex;justify-content:space-between;align-items:baseline;gap:14px;flex-wrap:wrap}
-    .top nav{display:flex;gap:clamp(14px,2vw,28px)}
-    .top nav a:hover{color:var(--ink)}
+    /* corner-label row (326/365 · PHOTO BY · DESIGN BY) */
+    .meta3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;align-items:start}
+    .meta3 nav{display:flex;gap:clamp(12px,1.6vw,22px);justify-content:center;flex-wrap:wrap}
+    .meta3 nav a:hover{color:var(--ink)}
+    .meta3 :last-child{text-align:right}
 
-    /* huge headline + meta block (the LEINEPERIN move) */
-    .big{font-weight:800;line-height:.84;letter-spacing:-.05em;text-transform:uppercase}
-    .h-xxl{font-size:clamp(58px,17vw,250px)}
-    .h-xl{font-size:clamp(46px,11.5vw,170px)}
-    .metablock{font-weight:600;font-size:clamp(15px,1.9vw,26px);line-height:1.12;letter-spacing:-.015em;text-transform:uppercase}
+    /* giant headline — tight contemporary grotesque */
+    .display{font-weight:900;line-height:.84;letter-spacing:-.045em;text-transform:uppercase}
+    .d1{font-size:clamp(62px,17.5vw,260px)}
+    .d2{font-size:clamp(46px,12vw,180px)}
+    /* address / positioning block (bold caps) */
+    .addr{font-weight:800;font-size:clamp(15px,2vw,30px);line-height:1.08;letter-spacing:-.01em;text-transform:uppercase}
 
-    /* photo with outlined number + justified caption over it */
-    .media{position:relative;overflow:hidden;aspect-ratio:16/10}
-    .media img{width:100%;height:100%;object-fit:cover;transition:scale .7s cubic-bezier(.16,1,.3,1)}
-    .media:hover img{scale:1.03}
-    .media::after{content:"";position:absolute;left:0;right:0;bottom:0;height:44%;
+    /* photo + thin outlined *number + justified caption */
+    .shot{position:relative;overflow:hidden;aspect-ratio:16/10}
+    .shot img{width:100%;height:100%;object-fit:cover;transition:scale .7s cubic-bezier(.16,1,.3,1)}
+    .shot:hover img{scale:1.03}
+    .shot::after{content:"";position:absolute;left:0;right:0;bottom:0;height:46%;
       background:linear-gradient(transparent,rgba(0,0,0,.5));pointer-events:none}
-    .media__num{position:absolute;top:-.16em;right:clamp(8px,2.5vw,34px);z-index:2;font-weight:800;
-      font-size:clamp(80px,18vw,280px);line-height:1;letter-spacing:-.04em;color:transparent;
-      -webkit-text-stroke:2.5px rgba(255,255,255,.95);pointer-events:none}
-    .media__cap{position:absolute;left:clamp(14px,2vw,26px);bottom:clamp(14px,2vw,26px);z-index:3;
-      max-width:34ch;color:#fff;font-size:clamp(11px,1.15vw,13px);line-height:1.5;text-align:justify}
+    .shot__num{position:absolute;top:-.2em;left:0;right:0;text-align:center;z-index:2;font-weight:900;
+      font-size:clamp(96px,21vw,320px);line-height:1;letter-spacing:-.05em;color:transparent;
+      -webkit-text-stroke:1.6px rgba(255,255,255,.95);pointer-events:none}
+    .shot__cap{position:absolute;left:clamp(14px,2vw,28px);bottom:clamp(14px,2vw,28px);z-index:3;
+      max-width:36ch;color:#fff;font-size:clamp(11px,1.1vw,13px);line-height:1.5;text-align:justify}
 
-    /* ---------- HERO (cover poster) ---------- */
-    .hero{padding-top:clamp(16px,2.5vw,26px)}
-    .hero .big{margin-top:clamp(12px,2vw,24px)}
-    .hero .metablock{margin-top:clamp(16px,2vw,28px)}
-    .hero .media{margin-top:clamp(22px,3.5vw,44px)}
+    /* hero spacing */
+    .hero{padding-top:clamp(14px,2.2vw,24px)}
+    .hero .display{margin-top:clamp(10px,1.6vw,20px)}
+    .hero .addr{margin-top:clamp(14px,1.8vw,26px)}
+    .hero .shot{margin-top:clamp(20px,3vw,40px)}
+    .marks{display:flex;justify-content:center;align-items:center;gap:clamp(20px,4vw,56px);
+      margin-top:clamp(16px,2vw,26px);flex-wrap:wrap}
+    .marks span{display:inline-flex;align-items:center;gap:8px}
+    .marks b{font-weight:800;letter-spacing:.02em}
+    .glyph{width:14px;height:14px;border:1.5px solid var(--ink);border-radius:50%}
+    .glyph.sq{border-radius:2px}
 
-    /* ---------- section rhythm ---------- */
-    .sec{margin-top:clamp(74px,11vw,160px)}
-    .sec__head{border-top:1px solid var(--line);padding-top:14px}
+    /* sections */
+    .sec{margin-top:clamp(72px,11vw,160px)}
+    .sec__head{border-top:1px solid var(--line);padding-top:13px}
 
-    /* manifesto */
-    .say h2{font-weight:800;font-size:clamp(40px,9vw,124px);line-height:.92;letter-spacing:-.045em;text-transform:none;margin-top:clamp(14px,2vw,26px);text-wrap:balance}
-    .say h2 i{font-family:var(--serif);font-weight:500;font-style:italic}
+    .say h2{font-weight:900;font-size:clamp(40px,9vw,128px);line-height:.9;letter-spacing:-.045em;margin-top:clamp(14px,2vw,26px);text-wrap:balance}
+    .say h2 i{font-family:var(--serif);font-weight:500;font-style:italic;text-transform:none}
     .say__grid{display:grid;grid-template-columns:1.3fr .7fr;gap:clamp(22px,5vw,72px);margin-top:clamp(24px,3.5vw,44px);align-items:start}
     .say__lead{font-size:clamp(15px,1.7vw,20px);line-height:1.45;max-width:46ch}
     .say__small{font-size:13px;line-height:1.65;color:var(--mut);text-align:justify}
 
-    /* projects */
-    .proj{margin-top:clamp(40px,6vw,80px)}
-    .proj .big{margin-top:clamp(10px,1.4vw,16px)}
+    .proj{margin-top:clamp(40px,6vw,84px)}
+    .proj .display{margin-top:clamp(10px,1.3vw,16px)}
     .proj__sub{display:flex;flex-wrap:wrap;gap:clamp(16px,4vw,56px);margin-top:clamp(14px,2vw,24px)}
-    .proj__sub .k{display:block;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--mut2)}
-    .proj__sub .v{font-size:clamp(15px,1.6vw,19px);font-weight:500;margin-top:4px;letter-spacing:-.01em}
-    .proj .media{margin-top:clamp(20px,3vw,32px)}
+    .proj__sub .k{display:block;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--mut2)}
+    .proj__sub .v{font-size:clamp(15px,1.6vw,19px);font-weight:600;margin-top:4px;letter-spacing:-.01em}
+    .proj .shot{margin-top:clamp(20px,3vw,32px)}
 
-    /* contacts */
     .contact h2{margin-top:clamp(12px,2vw,22px)}
     .contact__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(18px,3vw,40px);margin-top:clamp(26px,4vw,52px)}
-    .contact__grid .k{display:block;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--mut2);margin-bottom:6px}
-    .contact__grid .v{font-size:clamp(15px,1.7vw,21px);font-weight:500;letter-spacing:-.01em}
+    .contact__grid .k{display:block;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--mut2);margin-bottom:6px}
+    .contact__grid .v{font-size:clamp(15px,1.7vw,21px);font-weight:600;letter-spacing:-.01em}
 
-    /* footer */
     .foot{margin-top:clamp(56px,8vw,110px);border-top:1px solid var(--line);
       padding-block:24px clamp(70px,9vw,100px);display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
     .foot__bars{display:flex;gap:2px;align-items:flex-end;height:34px}
     .foot__bars i{display:block;width:2px;background:var(--ink)}
 
-    /* persistent CTA */
     .cta{position:fixed;right:clamp(14px,2.4vw,28px);bottom:clamp(14px,2.4vw,28px);z-index:80;
-      background:var(--ink);color:#fff;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+      background:var(--ink);color:#fff;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
       padding:14px 22px;border-radius:999px;box-shadow:0 10px 40px rgba(0,0,0,.18);transition:transform .3s cubic-bezier(.16,1,.3,1)}
     .cta:hover{transform:translateY(-2px)}
 
     @media(max-width:760px){
-      .top{flex-direction:column;gap:8px;align-items:flex-start}
+      .meta3{grid-template-columns:1fr;gap:6px}
+      .meta3 nav{justify-content:flex-start}
+      .meta3 :last-child{text-align:left}
       .say__grid{grid-template-columns:1fr}
       .contact__grid{grid-template-columns:1fr 1fr;gap:22px}
-      .media__num{font-size:clamp(64px,24vw,140px)}
+      .shot__num{font-size:clamp(72px,26vw,150px)}
     }
   </style>
 </head>
 <body>
 
-  <!-- ============ HERO ============ -->
+  <!-- ============ HERO (LEINEPERIN-faithful poster) ============ -->
   <section class="hero wrap">
-    <div class="top">
-      <span class="lab">2026 / Москва</span>
-      <nav aria-label="Меню">
-        <a class="lab" href="#manifest">Манифест</a>
-        <a class="lab" href="#work">Проекты</a>
-        <a class="lab" href="#contact">Контакты</a>
-      </nav>
+    <div class="meta3">
+      <span class="lab">ТЯП-ЛЯП — дизайнерский ремонт</span>
+      <nav aria-label="Меню"><a class="lab" href="#manifest">Манифест</a><a class="lab" href="#work">Проекты</a><a class="lab" href="#contact">Контакты</a></nav>
       <span class="lab">Фото · Дизайн — VICL</span>
     </div>
-    <h1 class="big h-xxl">ТЯП‑ЛЯП</h1>
-    <div class="metablock">Дизайнерский ремонт под&nbsp;ключ<br>Москва и&nbsp;Московская область<br>Без переплат · с&nbsp;2019</div>
-    <div class="media">
+
+    <h1 class="display d1">ТЯП-ЛЯП</h1>
+    <p class="addr">Дизайнерский ремонт под&nbsp;ключ<br>Москва и&nbsp;Московская область<br>Без переплат · с&nbsp;2019</p>
+
+    <div class="shot">
       <img src="assets/img/project-01.jpg" alt="Проект — кухня в бетоне" loading="eager" decoding="async" />
-      <div class="media__num">2026</div>
-      <p class="media__cap">Камень, дерево, кирпич, бетон и&nbsp;правильный свет. Дизайн показывает фактуру материала, а&nbsp;не прячет неидеально ровную стену — для тех, кто ценит вещи со&nbsp;вкусом.</p>
+      <div class="shot__num">*2026</div>
+      <p class="shot__cap">Камень, дерево, кирпич, бетон и&nbsp;правильный свет. Дизайн показывает фактуру материала, а&nbsp;не прячет неидеально ровную стену — для тех, кто ценит вещи со&nbsp;вкусом и&nbsp;устал от стандартного и&nbsp;бежевого.</p>
+    </div>
+
+    <div class="marks">
+      <span><i class="glyph"></i><b>ТЯП-ЛЯП</b></span>
+      <span class="lab">Designed differently</span>
+      <span><i class="glyph sq"></i><b>VICL</b></span>
     </div>
   </section>
 
   <!-- ============ MANIFESTO ============ -->
   <section class="wrap sec say" id="manifest">
-    <div class="top sec__head"><span class="lab">(01) — Манифест</span><span class="lab">Философия студии</span></div>
+    <div class="meta3 sec__head"><span class="lab">(01) — Манифест</span><span></span><span class="lab">Философия студии</span></div>
     <h2>Не «как‑нибудь».<br>А <i>как надо</i> — без переплат.</h2>
     <div class="say__grid">
       <p class="say__lead">«Тяп‑ляп» — это про скорость и честную цену, а не про халтуру. Делаем пространство для тех, кто был в Токио и Сеуле, любит уличную моду и вещи со вкусом — и кому надоело стандартное и бежевое.</p>
@@ -131,45 +141,45 @@
 
   <!-- ============ WORK ============ -->
   <section class="wrap sec" id="work">
-    <div class="top sec__head"><span class="lab">(02) — Проекты</span><span class="lab">2024 — 2026 / 06</span></div>
+    <div class="meta3 sec__head"><span class="lab">(02) — Проекты</span><span></span><span class="lab">2024 — 2026 / 06</span></div>
 
     <article class="proj">
-      <div class="top"><span class="lab">001 / 06</span><span class="lab">Фото · Дизайн — VICL</span></div>
-      <h3 class="big h-xl">Кухня<br>в&nbsp;бетоне</h3>
+      <div class="meta3"><span class="lab">001 / 06</span><span></span><span class="lab">Фото · Дизайн — VICL</span></div>
+      <h3 class="display d2">Кухня<br>в&nbsp;бетоне</h3>
       <div class="proj__sub">
         <div><span class="k">Локация</span><span class="v">Москва</span></div>
         <div><span class="k">Площадь</span><span class="v">48 м²</span></div>
         <div><span class="k">Материалы</span><span class="v">Микроцемент · камень · дуб</span></div>
         <div><span class="k">Год</span><span class="v">2025</span></div>
       </div>
-      <div class="media">
+      <div class="shot">
         <img src="assets/img/project-01.jpg" alt="Кухня в бетоне" loading="lazy" decoding="async" />
-        <div class="media__num">001</div>
-        <p class="media__cap">Каменный остров, скрытый свет, дубовый шпон. Фактура вместо позолоты.</p>
+        <div class="shot__num">*001</div>
+        <p class="shot__cap">Каменный остров, скрытый свет, дубовый шпон. Фактура вместо позолоты.</p>
       </div>
     </article>
 
     <article class="proj">
-      <div class="top"><span class="lab">002 / 06</span><span class="lab">Фото · Дизайн — VICL</span></div>
-      <h3 class="big h-xl">Кирпичный<br>лофт</h3>
+      <div class="meta3"><span class="lab">002 / 06</span><span></span><span class="lab">Фото · Дизайн — VICL</span></div>
+      <h3 class="display d2">Кирпичный<br>лофт</h3>
       <div class="proj__sub">
         <div><span class="k">Локация</span><span class="v">Москва</span></div>
         <div><span class="k">Площадь</span><span class="v">61 м²</span></div>
         <div><span class="k">Материалы</span><span class="v">Кирпич · металл · дерево</span></div>
         <div><span class="k">Год</span><span class="v">2025</span></div>
       </div>
-      <div class="media">
+      <div class="shot">
         <img src="assets/img/project-04.jpg" alt="Кирпичный лофт" loading="lazy" decoding="async" />
-        <div class="media__num">002</div>
-        <p class="media__cap">Открытая планировка, чёрный металл и тёплое дерево. Черновая → под ключ за один контракт.</p>
+        <div class="shot__num">*002</div>
+        <p class="shot__cap">Открытая планировка, чёрный металл и тёплое дерево. Черновая → под ключ за один контракт.</p>
       </div>
     </article>
   </section>
 
   <!-- ============ CONTACT ============ -->
   <section class="wrap sec contact" id="contact">
-    <div class="top sec__head"><span class="lab">(03) — Контакты</span><span class="lab">Москва и&nbsp;область</span></div>
-    <h2 class="big h-xl">Обсудим<br>проект?</h2>
+    <div class="meta3 sec__head"><span class="lab">(03) — Контакты</span><span></span><span class="lab">Москва и&nbsp;область</span></div>
+    <h2 class="display d2">Обсудим<br>проект?</h2>
     <div class="contact__grid">
       <div><span class="k">Телефон</span><span class="v">+7 (495) 000‑00‑00</span></div>
       <div><span class="k">Почта</span><span class="v">privet@tyap‑lyap.ru</span></div>
