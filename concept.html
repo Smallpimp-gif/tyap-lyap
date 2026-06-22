@@ -83,6 +83,15 @@
     .seam__photo .seam__meta{position:absolute;left:0;right:0;bottom:0;z-index:3;
       padding:clamp(14px,2vw,24px) var(--pad)}
     .seam__photo .seam__meta .k{color:rgba(255,255,255,.72)}
+
+    /* non-hero seams: projects + section openers (shorter panel, photo keeps a poster height) */
+    .seam:not(.hero){--panelH:clamp(150px,22vh,250px)}
+    .seam:not(.hero) .seam__photo{aspect-ratio:auto;height:clamp(340px,58vh,640px)}
+    .seam__meta a.v{transition:opacity .2s ease}
+    .seam__meta a.v:hover{opacity:.65}
+    .seam__body{max-width:var(--max);margin:clamp(30px,4vw,58px) auto 0;padding-inline:var(--pad)}
+    .say__statement{font-weight:800;font-size:clamp(24px,4vw,52px);line-height:1.05;letter-spacing:-.03em;margin-bottom:clamp(20px,3vw,36px);text-wrap:balance}
+    .say__statement i{font-family:var(--serif);font-weight:500;font-style:italic;text-transform:none}
     .marks{display:flex;justify-content:center;align-items:center;gap:clamp(20px,4vw,56px);
       margin-top:clamp(16px,2vw,26px);flex-wrap:wrap}
     .marks span{display:inline-flex;align-items:center;gap:8px}
@@ -115,7 +124,7 @@
     .foot{margin-top:clamp(56px,8vw,110px);border-top:1px solid var(--line);
       padding-block:24px clamp(70px,9vw,100px);display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
     /* ===== block / slide entrance transitions ===== */
-    html.anim-ready :is(.meta3,.display,h2,.addr,.marks,.say__grid,.proj__sub,.contact__grid,.seam__meta){
+    html.anim-ready :is(.meta3,.display,h2:not(.seam__word),.addr,.marks,.say__grid,.proj__sub,.contact__grid,.seam__meta){
       opacity:0;transform:translateY(28px);
       transition:opacity .8s var(--ease),transform .8s var(--ease);
       transition-delay:calc(var(--i,0)*.07s);will-change:opacity,transform}
@@ -123,10 +132,10 @@
       transition:clip-path 1.05s var(--ease);transition-delay:calc(var(--i,0)*.07s);will-change:clip-path}
     html.anim-ready .seam__word{opacity:0;transition:opacity 1s var(--ease);transition-delay:.12s;will-change:opacity} /* opacity only — keeps straddle transform */
     html.anim-ready .seam__word.in{opacity:1;will-change:auto}
-    html.anim-ready :is(.meta3,.display,h2,.addr,.marks,.say__grid,.proj__sub,.contact__grid,.seam__meta,.shot,.seam__photo).in{
+    html.anim-ready :is(.meta3,.display,h2:not(.seam__word),.addr,.marks,.say__grid,.proj__sub,.contact__grid,.seam__meta,.shot,.seam__photo).in{
       opacity:1;transform:none;clip-path:inset(0 0 0 0);will-change:auto}
     @media(prefers-reduced-motion:reduce){
-      html.anim-ready :is(.meta3,.display,h2,.addr,.marks,.say__grid,.proj__sub,.contact__grid,.seam__meta,.shot,.seam__photo){
+      html.anim-ready :is(.meta3,.display,h2:not(.seam__word),.addr,.marks,.say__grid,.proj__sub,.contact__grid,.seam__meta,.shot,.seam__photo){
         opacity:1!important;transform:none!important;clip-path:none!important;transition:none!important}
       html.anim-ready .seam__word{opacity:1!important;transition:none!important}
     }
@@ -172,7 +181,7 @@
     <h1 class="seam__word">ТЯП-ЛЯП</h1>
 
     <div class="seam__photo">
-      <img src="assets/img/project-01.jpg" alt="Дизайнерский ремонт — кухня в бетоне" loading="eager" decoding="async" />
+      <img src="assets/img/hero.jpg" alt="Дизайнерский ремонт под ключ — интерьер" loading="eager" decoding="async" />
       <div class="seam__meta seam__meta--bot">
         <div><span class="k">Материалы</span><span class="v">Бетон · дуб · камень</span></div>
         <div><span class="k">Дизайн · фото</span><span class="v">VICL</span></div>
@@ -181,62 +190,101 @@
     </div>
   </section>
 
-  <!-- ============ MANIFESTO ============ -->
-  <section class="wrap sec say" id="manifest">
-    <div class="meta3 sec__head"><span class="lab">(01) — Манифест</span><span></span><span class="lab">Философия студии</span></div>
-    <h2>Не «как‑нибудь».<br>А <i>как надо</i> — без переплат.</h2>
-    <div class="say__grid">
-      <p class="say__lead">«Тяп‑ляп» — это про скорость и честную цену, а не про халтуру. Делаем пространство для тех, кто был в Токио и Сеуле, любит уличную моду и вещи со вкусом — и кому надоело стандартное и бежевое.</p>
-      <p class="say__small">Сегмент — не эконом, где клеят обои. Это про «хочется круто, но не по цене квартиры». Дизайн важнее идеально ровной стены: красота в материале, свете и пропорции, а не в позолоте. Never&nbsp;Too&nbsp;Small по‑русски: небольшой бюджет ≠ скучно.</p>
+  <!-- ============ MANIFESTO (seam opener + body) ============ -->
+  <section class="sec say seam--host" id="manifest">
+    <div class="seam">
+      <div class="seam__panel">
+        <div class="seam__head"><b>(01) — Манифест</b><span class="lab">Философия студии</span></div>
+        <div class="seam__meta seam__meta--top">
+          <div><span class="k">Скорость</span><span class="v">Да</span></div>
+          <div><span class="k">Халтура</span><span class="v">Нет</span></div>
+          <div><span class="k">Переплаты</span><span class="v">Нет</span></div>
+        </div>
+      </div>
+      <h2 class="seam__word">Честно</h2>
+      <div class="seam__photo">
+        <img src="assets/img/band-manifesto.jpg" alt="Фактура материала — бетон, дерево, кирпич" loading="lazy" decoding="async" />
+        <div class="seam__meta seam__meta--bot">
+          <div><span class="k">Материал</span><span class="v">Важнее ровной стены</span></div>
+          <div><span class="k">Бюджет</span><span class="v">Разумный</span></div>
+          <div><span class="k">Вкус</span><span class="v">Япония · Корея · streetwear</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="seam__body">
+      <h2 class="say__statement">Не «как‑нибудь». А <i>как надо</i> — без переплат.</h2>
+      <div class="say__grid">
+        <p class="say__lead">«Тяп‑ляп» — это про скорость и честную цену, а не про халтуру. Делаем пространство для тех, кто был в Токио и Сеуле, любит уличную моду и вещи со вкусом — и кому надоело стандартное и бежевое.</p>
+        <p class="say__small">Сегмент — не эконом, где клеят обои. Это про «хочется круто, но не по цене квартиры». Дизайн важнее идеально ровной стены: красота в материале, свете и пропорции, а не в позолоте. Never&nbsp;Too&nbsp;Small по‑русски: небольшой бюджет ≠ скучно.</p>
+      </div>
     </div>
   </section>
 
-  <!-- ============ WORK ============ -->
-  <section class="wrap sec" id="work">
-    <div class="meta3 sec__head"><span class="lab">(02) — Проекты</span><span></span><span class="lab">2024 — 2026 / 06</span></div>
+  <!-- ============ WORK (each project = retro-poster seam) ============ -->
+  <section class="sec" id="work">
+    <div class="wrap"><div class="meta3 sec__head"><span class="lab">(02) — Проекты</span><span></span><span class="lab">2024 — 2026 / 06</span></div></div>
 
-    <article class="proj">
-      <div class="meta3"><span class="lab">001 / 06</span><span></span><span class="lab">Фото · Дизайн — VICL</span></div>
-      <h3 class="display d2">Кухня<br>в&nbsp;бетоне</h3>
-      <div class="proj__sub">
-        <div><span class="k">Локация</span><span class="v">Москва</span></div>
-        <div><span class="k">Площадь</span><span class="v">48 м²</span></div>
-        <div><span class="k">Материалы</span><span class="v">Микроцемент · камень · дуб</span></div>
-        <div><span class="k">Год</span><span class="v">2025</span></div>
+    <article class="proj seam">
+      <div class="seam__panel">
+        <div class="seam__head"><b>001 / 06</b><span class="lab">Кухня в&nbsp;бетоне</span></div>
+        <div class="seam__meta seam__meta--top">
+          <div><span class="k">Локация</span><span class="v">Москва</span></div>
+          <div><span class="k">Площадь</span><span class="v">48 м²</span></div>
+          <div><span class="k">Год</span><span class="v">2025</span></div>
+        </div>
       </div>
-      <div class="shot">
+      <h3 class="seam__word">Бетон</h3>
+      <div class="seam__photo">
         <img src="assets/img/project-01.jpg" alt="Кухня в бетоне" loading="lazy" decoding="async" />
-        <div class="shot__num">*001</div>
-        <p class="shot__cap">Каменный остров, скрытый свет, дубовый шпон. Фактура вместо позолоты.</p>
+        <div class="seam__meta seam__meta--bot">
+          <div><span class="k">Материалы</span><span class="v">Микроцемент · камень · дуб</span></div>
+          <div><span class="k">Стиль</span><span class="v">Минимализм</span></div>
+          <div><span class="k">Дизайн · фото</span><span class="v">VICL</span></div>
+        </div>
       </div>
     </article>
 
-    <article class="proj">
-      <div class="meta3"><span class="lab">002 / 06</span><span></span><span class="lab">Фото · Дизайн — VICL</span></div>
-      <h3 class="display d2">Кирпичный<br>лофт</h3>
-      <div class="proj__sub">
-        <div><span class="k">Локация</span><span class="v">Москва</span></div>
-        <div><span class="k">Площадь</span><span class="v">61 м²</span></div>
-        <div><span class="k">Материалы</span><span class="v">Кирпич · металл · дерево</span></div>
-        <div><span class="k">Год</span><span class="v">2025</span></div>
+    <article class="proj seam">
+      <div class="seam__panel">
+        <div class="seam__head"><b>002 / 06</b><span class="lab">Кирпичный лофт</span></div>
+        <div class="seam__meta seam__meta--top">
+          <div><span class="k">Локация</span><span class="v">Москва</span></div>
+          <div><span class="k">Площадь</span><span class="v">61 м²</span></div>
+          <div><span class="k">Год</span><span class="v">2025</span></div>
+        </div>
       </div>
-      <div class="shot">
+      <h3 class="seam__word">Лофт</h3>
+      <div class="seam__photo">
         <img src="assets/img/project-04.jpg" alt="Кирпичный лофт" loading="lazy" decoding="async" />
-        <div class="shot__num">*002</div>
-        <p class="shot__cap">Открытая планировка, чёрный металл и тёплое дерево. Черновая → под ключ за один контракт.</p>
+        <div class="seam__meta seam__meta--bot">
+          <div><span class="k">Материалы</span><span class="v">Кирпич · металл · дерево</span></div>
+          <div><span class="k">Стиль</span><span class="v">Лофт</span></div>
+          <div><span class="k">Дизайн · фото</span><span class="v">VICL</span></div>
+        </div>
       </div>
     </article>
   </section>
 
-  <!-- ============ CONTACT ============ -->
-  <section class="wrap sec contact" id="contact">
-    <div class="meta3 sec__head"><span class="lab">(03) — Контакты</span><span></span><span class="lab">Москва и&nbsp;область</span></div>
-    <h2 class="display d2">Обсудим<br>проект?</h2>
-    <div class="contact__grid">
-      <div><span class="k">Телефон</span><span class="v">+7 (495) 000‑00‑00</span></div>
-      <div><span class="k">Почта</span><span class="v">privet@tyap‑lyap.ru</span></div>
-      <div><span class="k">Telegram</span><span class="v">@tyaplyap</span></div>
-      <div><span class="k">Где</span><span class="v">Москва · МО</span></div>
+  <!-- ============ CONTACT (seam opener; contacts in the bottom meta) ============ -->
+  <section class="sec contact seam--host" id="contact">
+    <div class="seam">
+      <div class="seam__panel">
+        <div class="seam__head"><b>(03) — Контакты</b><span class="lab">Москва и&nbsp;область</span></div>
+        <div class="seam__meta seam__meta--top">
+          <div><span class="k">Ответ</span><span class="v">В течение дня</span></div>
+          <div><span class="k">Смета</span><span class="v">Прозрачная</span></div>
+          <div><span class="k">Выезд</span><span class="v">Бесплатно</span></div>
+        </div>
+      </div>
+      <h2 class="seam__word">На связи</h2>
+      <div class="seam__photo">
+        <img src="assets/img/band-cta.jpg" alt="Обсудим проект" loading="lazy" decoding="async" />
+        <div class="seam__meta seam__meta--bot">
+          <div><span class="k">Телефон</span><a class="v" href="tel:+74950000000">+7 (495) 000‑00‑00</a></div>
+          <div><span class="k">Telegram</span><a class="v" href="https://t.me/tyaplyap">@tyaplyap</a></div>
+          <div><span class="k">Почта</span><a class="v" href="mailto:privet@tyap-lyap.ru">privet@tyap‑lyap.ru</a></div>
+        </div>
+      </div>
     </div>
   </section>
 
