@@ -4,148 +4,156 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="noindex" />
-  <title>ТЯП-ЛЯП — концепт v2 (швейцарская типографика)</title>
+  <title>ТЯП-ЛЯП — концепт v3 (makevibe-style)</title>
   <link rel="icon" href="favicon.png?v=3" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap" rel="stylesheet" />
   <style>
     :root{
-      --ink:#111111; --paper:#ffffff; --mut:#7c7c7c; --mut2:#a6a6a6; --line:#e7e7e7;
-      --sans:'Helvetica Neue',Helvetica,Arial,sans-serif;
-      --serif:'Playfair Display',Georgia,serif;
-      --pad:clamp(18px,4vw,46px); --max:1200px;
+      --ink:#111; --paper:#fff; --mut:#737373; --mut2:#a8a8a8; --line:#ececec;
+      --sans:'Helvetica Neue',Helvetica,Arial,sans-serif; --serif:'Playfair Display',Georgia,serif;
+      --pad:clamp(18px,4vw,48px); --max:1280px;
     }
     *{box-sizing:border-box;margin:0;padding:0}
-    html{-webkit-font-smoothing:antialiased}
-    body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.5;overflow-x:hidden}
+    html{-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+    body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.55;overflow-x:hidden}
     img{display:block;max-width:100%}
-    /* film grain over everything */
-    .grain{position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.06;mix-blend-mode:multiply;
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+    a{color:inherit;text-decoration:none}
     .wrap{max-width:var(--max);margin:0 auto;padding-inline:var(--pad)}
-    .lab{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
+    .lab{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--mut)}
 
-    /* top meta bar */
-    .top{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;padding-block:16px;border-bottom:1px solid var(--line)}
-    .top span:nth-child(2){text-align:center}
-    .top span:last-child{text-align:right}
+    /* ---------- intro menu (the "первоначальное меню") ---------- */
+    .intro{min-height:100svh;display:flex;flex-direction:column;justify-content:space-between;
+      padding-block:clamp(16px,2.5vw,26px) clamp(20px,3vw,34px)}
+    .intro__top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+    .intro__top img{height:clamp(22px,2.6vw,34px);width:auto}
+    .intro__nav{display:flex;flex-direction:column;flex:1;justify-content:center;
+      gap:clamp(2px,.4vw,8px);padding-block:clamp(22px,4vw,46px)}
+    .intro__link{display:flex;align-items:baseline;gap:clamp(12px,2vw,30px);width:max-content;max-width:100%;
+      font-weight:800;font-size:clamp(40px,10vw,128px);line-height:.96;letter-spacing:-.045em;
+      transition:transform .4s cubic-bezier(.16,1,.3,1),opacity .25s}
+    .intro__idx{font-size:clamp(11px,.9vw,14px);font-weight:500;letter-spacing:.08em;color:var(--mut2);
+      transform:translateY(-.5em)}
+    .intro__nav:hover .intro__link{opacity:.32}
+    .intro__link:hover{opacity:1;transform:translateX(clamp(10px,1.6vw,26px))}
+    .intro__bot{display:flex;justify-content:space-between;align-items:flex-end;gap:18px;flex-wrap:wrap}
+    .intro__tag{max-width:42ch;color:var(--mut);font-size:clamp(13px,1.45vw,17px);line-height:1.45}
+    .intro__tag b{color:var(--ink);font-weight:500}
 
-    /* hero — giant wordmark over a blob-masked real photo (ark) */
-    .hero{padding-top:clamp(20px,4vw,40px)}
-    .hero__frame{position:relative}
-    .hero__photo{width:78%;margin:clamp(40px,7vw,90px) auto 0;aspect-ratio:16/11;object-fit:cover;clip-path:url(#blobA)}
-    .hero__word{position:absolute;top:0;left:0;width:100%;z-index:2}
-    .hero__word img{width:100%;height:auto}
-    .hero__row{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-top:clamp(18px,3vw,30px)}
-    .hero__tag{font-size:clamp(13px,1.4vw,16px);color:var(--mut);max-width:36ch}
-    .meta{display:grid;grid-template-columns:repeat(4,auto);gap:clamp(18px,4vw,52px)}
-    .meta .k{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--mut2)}
-    .meta .v{font-size:clamp(14px,1.5vw,17px);font-weight:500;margin-top:4px;letter-spacing:-.01em}
+    /* ---------- work / projects (clean rectangular, makevibe-style) ---------- */
+    .sec-h{display:flex;justify-content:space-between;align-items:baseline;gap:16px;
+      border-top:1px solid var(--line);padding-top:14px;margin-top:clamp(70px,10vw,150px)}
+    .sec-h h2{font-size:clamp(13px,1.4vw,15px);font-weight:500;letter-spacing:.02em}
+    .proj{margin-top:clamp(26px,4vw,52px)}
+    .proj__head{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;padding-bottom:12px}
+    .proj__head .v{font-size:clamp(14px,1.5vw,17px);font-weight:500;margin-top:3px;letter-spacing:-.01em}
+    .proj__head div:nth-child(2){text-align:center}
+    .proj__head div:last-child{text-align:right}
+    .proj__media{aspect-ratio:16/10;overflow:hidden}
+    .proj__media img{width:100%;height:100%;object-fit:cover;transition:scale .6s cubic-bezier(.16,1,.3,1)}
+    .proj:hover .proj__media img{scale:1.04}
+    .proj__cap{max-width:56ch;margin-top:16px;color:var(--mut);font-size:clamp(13px,1.4vw,15px);line-height:1.55}
 
-    /* poster block — full-bleed real photo + giant outlined number (retro/LEINEPERIN) */
-    .poster{position:relative;margin-top:clamp(60px,9vw,130px)}
-    .poster__head{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;padding-bottom:12px}
-    .poster__head .v{font-size:clamp(13px,1.4vw,16px);font-weight:500;margin-top:3px}
-    .poster__head div:nth-child(2){text-align:center}
-    .poster__head div:last-child{text-align:right}
-    .poster__media{position:relative;overflow:hidden;aspect-ratio:16/10}
-    .poster__media img{width:100%;height:100%;object-fit:cover}
-    .poster__cap{max-width:56ch;margin-top:16px;color:var(--mut);font-size:clamp(13px,1.4vw,15px);line-height:1.55}
-
-    /* big/small typographic statement */
-    .say{margin-top:clamp(64px,10vw,150px)}
-    .say h2{font-weight:800;font-size:clamp(40px,9vw,128px);line-height:.95;letter-spacing:-.04em;text-wrap:balance}
+    /* ---------- typographic statement (big/small) ---------- */
+    .say{margin-top:clamp(72px,11vw,160px)}
+    .say h2{font-weight:800;font-size:clamp(40px,9vw,124px);line-height:.95;letter-spacing:-.045em;text-wrap:balance}
     .say h2 i{font-family:var(--serif);font-weight:500;font-style:italic}
-    .say__grid{display:grid;grid-template-columns:1.3fr .7fr;gap:clamp(20px,5vw,70px);margin-top:clamp(22px,3vw,40px);align-items:start}
+    .say__grid{display:grid;grid-template-columns:1.3fr .7fr;gap:clamp(22px,5vw,72px);
+      margin-top:clamp(24px,3.5vw,44px);align-items:start}
     .say__lead{font-size:clamp(15px,1.7vw,20px);line-height:1.45;max-width:46ch}
-    .say__small{font-size:13px;line-height:1.6;color:var(--mut);text-align:justify}
+    .say__small{font-size:13px;line-height:1.65;color:var(--mut);text-align:justify}
 
-    /* footer */
-    .foot{margin-top:clamp(64px,10vw,140px);border-top:1px solid var(--line);padding-block:22px clamp(60px,8vw,90px);
-      display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+    /* ---------- footer ---------- */
+    .foot{margin-top:clamp(72px,11vw,150px);border-top:1px solid var(--line);
+      padding-block:24px clamp(70px,9vw,100px);display:flex;justify-content:space-between;
+      align-items:center;gap:16px;flex-wrap:wrap}
     .foot__bars{display:flex;gap:2px;align-items:flex-end;height:34px}
     .foot__bars i{display:block;width:2px;background:var(--ink)}
 
-    /* persistent CTA (makevibe-style) */
-    .cta{position:fixed;right:clamp(14px,2.5vw,28px);bottom:clamp(14px,2.5vw,28px);z-index:70;
-      background:var(--ink);color:#fff;font-size:13px;font-weight:500;letter-spacing:.01em;
-      padding:13px 22px;border-radius:999px;text-decoration:none;
-      box-shadow:0 10px 40px rgba(0,0,0,.18)}
+    /* ---------- persistent CTA (makevibe — always on screen) ---------- */
+    .cta{position:fixed;right:clamp(14px,2.4vw,28px);bottom:clamp(14px,2.4vw,28px);z-index:80;
+      background:var(--ink);color:#fff;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+      padding:14px 22px;border-radius:999px;box-shadow:0 10px 40px rgba(0,0,0,.18);
+      transition:transform .3s cubic-bezier(.16,1,.3,1)}
+    .cta:hover{transform:translateY(-2px)}
 
-    @media(max-width:720px){
-      .top,.poster__head{grid-template-columns:1fr 1fr}
-      .top span:nth-child(2),.poster__head div:nth-child(2){display:none}
-      .meta{grid-template-columns:1fr 1fr;gap:16px 24px}
+    @media(max-width:760px){
+      .proj__head{grid-template-columns:1fr 1fr}
+      .proj__head div:nth-child(2){display:none}
       .say__grid{grid-template-columns:1fr}
-      .hero__photo{width:100%}
+      .intro__link{font-size:clamp(38px,15vw,80px)}
     }
   </style>
 </head>
 <body>
-  <!-- responsive blob clip (objectBoundingBox → scales with the element) -->
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
-    <clipPath id="blobA" clipPathUnits="objectBoundingBox">
-      <path d="M0.52,0.02 C0.74,0 0.99,0.13 0.99,0.37 C1,0.57 0.9,0.75 0.72,0.87 C0.6,0.95 0.44,0.98 0.28,0.89 C0.12,0.8 0,0.61 0.02,0.39 C0.03,0.21 0.16,0.07 0.34,0.04 C0.41,0.03 0.46,0.025 0.52,0.02 Z"/>
-    </clipPath>
-  </defs></svg>
 
-  <div class="wrap">
-    <div class="top">
-      <span class="lab">ТЯП-ЛЯП — дизайнерский ремонт</span>
-      <span class="lab">(2026) · Москва и область</span>
-      <span class="lab">Концепт · v2</span>
-    </div>
+  <!-- ============ INTRO MENU ============ -->
+  <section class="intro wrap">
+    <header class="intro__top">
+      <img src="assets/img/logo.png" alt="ТЯП-ЛЯП" />
+      <span class="lab">(2026) · Москва и&nbsp;область</span>
+    </header>
 
-    <section class="hero">
-      <div class="hero__frame">
-        <img class="hero__photo" src="assets/img/project-01.jpg" alt="Кухня в бетоне" loading="eager" decoding="async" />
-        <h1 class="hero__word"><img src="assets/img/logo.png" alt="ТЯП-ЛЯП" /></h1>
-      </div>
-      <div class="hero__row">
-        <p class="hero__tag">Ремонт как дизайн-объект. Камень, дерево, кирпич, бетон и правильный свет — без «дорого-богато».</p>
-        <div class="meta">
-          <div><div class="k">Проектов</div><div class="v">12+</div></div>
-          <div><div class="k">Города</div><div class="v">МСК · МО</div></div>
-          <div><div class="k">Стиль</div><div class="v">Лофт / мин.</div></div>
-          <div><div class="k">Год</div><div class="v">2026</div></div>
-        </div>
-      </div>
-    </section>
+    <nav class="intro__nav" aria-label="Меню">
+      <a class="intro__link" href="#work"><span class="intro__idx">01</span>Проекты</a>
+      <a class="intro__link" href="#approach"><span class="intro__idx">02</span>Подход</a>
+      <a class="intro__link" href="#process"><span class="intro__idx">03</span>Процесс</a>
+      <a class="intro__link" href="#contact"><span class="intro__idx">04</span>Контакты</a>
+    </nav>
 
-    <section class="poster">
-      <div class="poster__head">
-        <div><div class="lab">Проект</div><div class="v">001 — Кухня в бетоне</div></div>
+    <footer class="intro__bot">
+      <p class="intro__tag"><b>Дизайнерский ремонт без переплат.</b> Камень, дерево, кирпич, бетон и&nbsp;правильный свет — без «дорого-богато».</p>
+      <span class="lab">проекты ниже&nbsp;↓</span>
+    </footer>
+  </section>
+
+  <!-- ============ WORK ============ -->
+  <div class="wrap" id="work">
+    <div class="sec-h"><h2>Избранные проекты</h2><span class="lab">2024 — 2026</span></div>
+
+    <article class="proj">
+      <div class="proj__head">
+        <div><div class="lab">Проект</div><div class="v">001 — Кухня в&nbsp;бетоне</div></div>
         <div><div class="lab">Площадь</div><div class="v">48 м²</div></div>
         <div><div class="lab">Локация · Год</div><div class="v">Москва · 2025</div></div>
       </div>
-      <div class="poster__media">
-        <img src="assets/img/project-04.jpg" alt="Кирпичный лофт" loading="lazy" decoding="async" />
-      </div>
-      <p class="poster__cap">Черновая → под ключ. Открытая планировка, микроцемент, дубовый шпон, скрытый свет. Дизайн показывает фактуру, а не прячет неидеальную стену.</p>
-    </section>
+      <div class="proj__media"><img src="assets/img/project-01.jpg" alt="Кухня в бетоне" loading="eager" decoding="async" /></div>
+      <p class="proj__cap">Микроцемент, каменный остров, дубовый шпон и скрытый свет. Фактура вместо позолоты — дизайн показывает материал, а не прячет неидеальную стену.</p>
+    </article>
 
-    <section class="say">
-      <h2>Не «как‑нибудь».<br>А <i>как надо</i> — без переплат.</h2>
-      <div class="say__grid">
-        <p class="say__lead">«Тяп‑ляп» — это про скорость и честную цену, а не про халтуру. Мы делаем пространство для тех, кто был в Токио и Сеуле, любит уличную моду и вещи со вкусом — и кому надоело стандартное и бежевое.</p>
-        <p class="say__small">Сегмент — не эконом, где клеят обои. Это про «хочется круто, но не по цене квартиры». Дизайн важнее идеально ровной стены: красота в материале, свете и пропорции, а не в позолоте. Never&nbsp;Too&nbsp;Small по‑русски: маленький бюджет ≠ скучно.</p>
+    <article class="proj">
+      <div class="proj__head">
+        <div><div class="lab">Проект</div><div class="v">002 — Кирпичный лофт</div></div>
+        <div><div class="lab">Площадь</div><div class="v">61 м²</div></div>
+        <div><div class="lab">Локация · Год</div><div class="v">Москва · 2025</div></div>
       </div>
-    </section>
-
-    <footer class="foot">
-      <span class="lab">© 2026 ТЯП-ЛЯП · Дизайн — VICL</span>
-      <div class="foot__bars" aria-hidden="true"></div>
-      <span class="lab">privet@tyap-lyap.ru</span>
-    </footer>
+      <div class="proj__media"><img src="assets/img/project-04.jpg" alt="Кирпичный лофт" loading="lazy" decoding="async" /></div>
+      <p class="proj__cap">Открытая планировка, кирпич, чёрный металл и тёплое дерево. Черновая → под ключ за один контракт.</p>
+    </article>
   </div>
 
-  <a class="cta" href="#">рассчитать проект →</a>
+  <!-- ============ STATEMENT ============ -->
+  <section class="wrap say" id="approach">
+    <h2>Не «как‑нибудь».<br>А <i>как надо</i> — без переплат.</h2>
+    <div class="say__grid">
+      <p class="say__lead">«Тяп‑ляп» — это про скорость и честную цену, а не про халтуру. Делаем пространство для тех, кто был в Токио и Сеуле, любит уличную моду и вещи со вкусом — и кому надоело стандартное и бежевое.</p>
+      <p class="say__small">Сегмент — не эконом, где клеят обои. Это про «хочется круто, но не по цене квартиры». Дизайн важнее идеально ровной стены: красота в материале, свете и пропорции, а не в позолоте. Never&nbsp;Too&nbsp;Small по‑русски: небольшой бюджет ≠ скучно.</p>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="wrap foot" id="contact">
+    <span class="lab">© 2026 ТЯП-ЛЯП · Дизайн — VICL</span>
+    <div class="foot__bars" aria-hidden="true"></div>
+    <span class="lab">privet@tyap-lyap.ru</span>
+  </footer>
+
+  <a class="cta" href="#contact">рассчитать проект</a>
 
   <script>
-    // decorative barcode
-    var bars = document.querySelector('.foot__bars');
-    if (bars) { var h=[10,28,16,34,12,24,30,14,22,18,32,12,26,16,34,20]; var s=''; for (var i=0;i<h.length;i++){ s+='<i style="height:'+h[i]+'px"></i>'; } bars.innerHTML=s; }
+    var bars=document.querySelector('.foot__bars');
+    if(bars){var h=[10,28,16,34,12,24,30,14,22,18,32,12,26,16,34,20];var s='';for(var i=0;i<h.length;i++){s+='<i style="height:'+h[i]+'px"></i>';}bars.innerHTML=s;}
   </script>
 </body>
 </html>
