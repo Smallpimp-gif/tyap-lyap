@@ -54,8 +54,8 @@
     /* HERO — retro KNOCKOUT: photo shows THROUGH the giant word (background-clip:text) */
     .hero.knock{position:relative;height:100svh;min-height:580px;overflow:hidden;
       background:#000;--panelH:clamp(250px,48vh,520px)}
-    .kphoto{position:absolute;inset:0;z-index:0}
-    .kphoto img{width:100%;height:100%;object-fit:cover}
+    /* photo as a fixed cover background — same as the word fill below, so they match exactly */
+    .kphoto{position:absolute;inset:0;z-index:0;background:url("assets/img/hero.jpg") center center/cover fixed}
     .kphoto::after{content:"";position:absolute;left:0;right:0;bottom:0;height:38%;
       background:linear-gradient(transparent,rgba(0,0,0,.6))}
     .kpanel{position:absolute;top:0;left:0;right:0;height:var(--panelH);background:#000;z-index:1}
@@ -185,7 +185,7 @@
 
   <!-- ============ HERO (retro KNOCKOUT: photo shows THROUGH the giant word) ============ -->
   <section class="hero knock">
-    <div class="kphoto"><img src="assets/img/hero.jpg" alt="Дизайнерский ремонт под ключ — интерьер" loading="eager" decoding="async" /></div>
+    <div class="kphoto" role="img" aria-label="Дизайнерский ремонт под ключ — интерьер"></div>
 
     <div class="kpanel" aria-hidden="true"></div>
     <h1 class="kword">ТЯП-ЛЯП</h1>
