@@ -70,6 +70,11 @@
     .kbot{padding-bottom:clamp(92px,11vh,120px)} /* clear the persistent CTA */
     .visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
+    /* BLOCK knockout — same trick as hero, block-sized (reuses .kphoto/.kcut/.kmeta) */
+    .bknock{position:relative;height:clamp(560px,90vh,880px);overflow:hidden;background:#000;
+      --panelH:clamp(190px,33vh,380px);margin-top:clamp(40px,6vw,84px)}
+    .bknock .kbot{padding-bottom:clamp(18px,2.5vw,32px)}
+
     /* ===== retro-poster seam: giant word straddling a colour panel → photo ===== */
     .seam{position:relative;--panelH:clamp(220px,40vh,440px);--seam-bg:var(--ink)}
     .seam__panel{height:var(--panelH);background:var(--seam-bg);color:#fff;
@@ -246,19 +251,26 @@
   <section class="sec" id="work">
     <div class="wrap"><div class="meta3 sec__head"><span class="lab">(02) — Проекты</span><span></span><span class="lab">2024 — 2026 / 06</span></div></div>
 
-    <article class="proj seam">
-      <div class="seam__panel">
-        <div class="seam__head"><b>001 / 06</b><span class="lab">Кухня в&nbsp;бетоне</span></div>
-        <div class="seam__meta seam__meta--top">
-          <div><span class="k">Локация</span><span class="v">Москва</span></div>
-          <div><span class="k">Площадь</span><span class="v">48 м²</span></div>
-          <div><span class="k">Год</span><span class="v">2025</span></div>
+    <article class="bknock">
+      <div class="kphoto"><img src="assets/img/project-01.jpg" alt="Кухня в бетоне" loading="lazy" decoding="async" /></div>
+      <svg class="kcut" preserveAspectRatio="none" aria-hidden="true">
+        <defs><mask id="km1" maskUnits="userSpaceOnUse">
+          <rect x="0" y="0" width="100%" height="100%" fill="#fff"></rect>
+          <text x="50%" y="100%" dy=".13em" text-anchor="middle" fill="#000">Бетон</text>
+        </mask></defs>
+        <rect x="0" y="0" width="100%" height="100%" fill="#0e0e0e" mask="url(#km1)"></rect>
+      </svg>
+      <h3 class="visually-hidden">Кухня в бетоне</h3>
+      <div class="kmeta">
+        <div class="ktop">
+          <div class="seam__head"><b>001 / 06</b><span class="lab">Кухня в&nbsp;бетоне</span></div>
+          <div class="seam__meta seam__meta--top">
+            <div><span class="k">Локация</span><span class="v">Москва</span></div>
+            <div><span class="k">Площадь</span><span class="v">48 м²</span></div>
+            <div><span class="k">Год</span><span class="v">2025</span></div>
+          </div>
         </div>
-      </div>
-      <h3 class="seam__word">Бетон</h3>
-      <div class="seam__photo">
-        <img src="assets/img/project-01.jpg" alt="Кухня в бетоне" loading="lazy" decoding="async" />
-        <div class="seam__meta seam__meta--bot">
+        <div class="seam__meta seam__meta--bot kbot">
           <div><span class="k">Материалы</span><span class="v">Микроцемент · камень · дуб</span></div>
           <div><span class="k">Стиль</span><span class="v">Минимализм</span></div>
           <div><span class="k">Дизайн · фото</span><span class="v">VICL</span></div>
@@ -266,19 +278,26 @@
       </div>
     </article>
 
-    <article class="proj seam">
-      <div class="seam__panel">
-        <div class="seam__head"><b>002 / 06</b><span class="lab">Кирпичный лофт</span></div>
-        <div class="seam__meta seam__meta--top">
-          <div><span class="k">Локация</span><span class="v">Москва</span></div>
-          <div><span class="k">Площадь</span><span class="v">61 м²</span></div>
-          <div><span class="k">Год</span><span class="v">2025</span></div>
+    <article class="bknock">
+      <div class="kphoto"><img src="assets/img/project-04.jpg" alt="Кирпичный лофт" loading="lazy" decoding="async" /></div>
+      <svg class="kcut" preserveAspectRatio="none" aria-hidden="true">
+        <defs><mask id="km2" maskUnits="userSpaceOnUse">
+          <rect x="0" y="0" width="100%" height="100%" fill="#fff"></rect>
+          <text x="50%" y="100%" dy=".13em" text-anchor="middle" fill="#000">Лофт</text>
+        </mask></defs>
+        <rect x="0" y="0" width="100%" height="100%" fill="#0e0e0e" mask="url(#km2)"></rect>
+      </svg>
+      <h3 class="visually-hidden">Кирпичный лофт</h3>
+      <div class="kmeta">
+        <div class="ktop">
+          <div class="seam__head"><b>002 / 06</b><span class="lab">Кирпичный лофт</span></div>
+          <div class="seam__meta seam__meta--top">
+            <div><span class="k">Локация</span><span class="v">Москва</span></div>
+            <div><span class="k">Площадь</span><span class="v">61 м²</span></div>
+            <div><span class="k">Год</span><span class="v">2025</span></div>
+          </div>
         </div>
-      </div>
-      <h3 class="seam__word">Лофт</h3>
-      <div class="seam__photo">
-        <img src="assets/img/project-04.jpg" alt="Кирпичный лофт" loading="lazy" decoding="async" />
-        <div class="seam__meta seam__meta--bot">
+        <div class="seam__meta seam__meta--bot kbot">
           <div><span class="k">Материалы</span><span class="v">Кирпич · металл · дерево</span></div>
           <div><span class="k">Стиль</span><span class="v">Лофт</span></div>
           <div><span class="k">Дизайн · фото</span><span class="v">VICL</span></div>
