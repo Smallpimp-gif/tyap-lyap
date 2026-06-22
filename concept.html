@@ -50,11 +50,39 @@
     .shot__cap{position:absolute;left:clamp(14px,2vw,28px);bottom:clamp(14px,2vw,28px);z-index:3;
       max-width:36ch;color:#fff;font-size:clamp(11px,1.1vw,13px);line-height:1.5;text-align:justify}
 
-    /* hero spacing */
-    .hero{padding-top:clamp(14px,2.2vw,24px)}
-    .hero .display{margin-top:clamp(10px,1.6vw,20px)}
-    .hero .addr{margin-top:clamp(14px,1.8vw,26px)}
-    .hero .shot{margin-top:clamp(20px,3vw,40px)}
+    /* hero is a full-screen retro-poster seam */
+    .hero.seam{padding-top:0}
+    .hero.seam .seam__photo{height:calc(100svh - var(--panelH));min-height:340px}
+    .hero.seam .seam__meta--bot{padding-bottom:clamp(92px,11vh,120px)} /* clear the persistent CTA */
+
+    /* ===== retro-poster seam: giant word straddling a colour panel → photo ===== */
+    .seam{position:relative;--panelH:clamp(220px,40vh,440px);--seam-bg:var(--ink)}
+    .seam__panel{height:var(--panelH);background:var(--seam-bg);color:#fff;
+      display:flex;flex-direction:column;gap:clamp(14px,2.4vw,26px);
+      padding:clamp(16px,2.3vw,28px) var(--pad)}
+    .seam__head{display:flex;justify-content:space-between;align-items:center;gap:14px}
+    .seam__head b{font-weight:800;letter-spacing:.02em;font-size:clamp(13px,1vw,15px)}
+    .seam__head nav{display:flex;gap:clamp(12px,1.6vw,22px);flex-wrap:wrap}
+    .seam__head .lab{color:rgba(255,255,255,.6)}
+    .seam__head .lab:hover{color:#fff}
+    .seam__meta{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+    .seam__meta>div{display:flex;flex-direction:column;gap:4px}
+    .seam__meta>div:nth-child(2){align-items:center;text-align:center}
+    .seam__meta>div:last-child{align-items:flex-end;text-align:right}
+    .seam__meta .k{font-size:clamp(10px,.85vw,12px);font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+    .seam__meta .v{font-size:clamp(13px,1.4vw,18px);font-weight:700;letter-spacing:-.01em}
+    .seam__word{position:absolute;left:0;right:0;top:var(--panelH);transform:translateY(-56%);
+      margin:0;text-align:center;color:#fff;z-index:4;pointer-events:none;
+      font-weight:900;font-size:clamp(72px,18.5vw,300px);line-height:.78;letter-spacing:-.045em;text-transform:uppercase}
+    .seam__photo{position:relative;overflow:hidden;aspect-ratio:16/9;background:#111}
+    .seam__photo>img{width:100%;height:100%;object-fit:cover}
+    .seam__photo::before{content:"";position:absolute;left:0;right:0;top:0;height:42%;
+      background:linear-gradient(rgba(0,0,0,.45),transparent);pointer-events:none;z-index:1}
+    .seam__photo::after{content:"";position:absolute;left:0;right:0;bottom:0;height:55%;
+      background:linear-gradient(transparent,rgba(0,0,0,.62));pointer-events:none;z-index:1}
+    .seam__photo .seam__meta{position:absolute;left:0;right:0;bottom:0;z-index:3;
+      padding:clamp(14px,2vw,24px) var(--pad)}
+    .seam__photo .seam__meta .k{color:rgba(255,255,255,.72)}
     .marks{display:flex;justify-content:center;align-items:center;gap:clamp(20px,4vw,56px);
       margin-top:clamp(16px,2vw,26px);flex-wrap:wrap}
     .marks span{display:inline-flex;align-items:center;gap:8px}
@@ -87,17 +115,20 @@
     .foot{margin-top:clamp(56px,8vw,110px);border-top:1px solid var(--line);
       padding-block:24px clamp(70px,9vw,100px);display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
     /* ===== block / slide entrance transitions ===== */
-    html.anim-ready :is(.meta3,.display,h2,.addr,.marks,.say__grid,.proj__sub,.contact__grid){
+    html.anim-ready :is(.meta3,.display,h2,.addr,.marks,.say__grid,.proj__sub,.contact__grid,.seam__meta){
       opacity:0;transform:translateY(28px);
       transition:opacity .8s var(--ease),transform .8s var(--ease);
       transition-delay:calc(var(--i,0)*.07s);will-change:opacity,transform}
-    html.anim-ready .shot{clip-path:inset(0 0 100% 0);
+    html.anim-ready :is(.shot,.seam__photo){clip-path:inset(0 0 100% 0);
       transition:clip-path 1.05s var(--ease);transition-delay:calc(var(--i,0)*.07s);will-change:clip-path}
-    html.anim-ready :is(.meta3,.display,h2,.addr,.marks,.say__grid,.proj__sub,.contact__grid,.shot).in{
+    html.anim-ready .seam__word{opacity:0;transition:opacity 1s var(--ease);transition-delay:.12s;will-change:opacity} /* opacity only — keeps straddle transform */
+    html.anim-ready .seam__word.in{opacity:1;will-change:auto}
+    html.anim-ready :is(.meta3,.display,h2,.addr,.marks,.say__grid,.proj__sub,.contact__grid,.seam__meta,.shot,.seam__photo).in{
       opacity:1;transform:none;clip-path:inset(0 0 0 0);will-change:auto}
     @media(prefers-reduced-motion:reduce){
-      html.anim-ready :is(.meta3,.display,h2,.addr,.marks,.say__grid,.proj__sub,.contact__grid,.shot){
+      html.anim-ready :is(.meta3,.display,h2,.addr,.marks,.say__grid,.proj__sub,.contact__grid,.seam__meta,.shot,.seam__photo){
         opacity:1!important;transform:none!important;clip-path:none!important;transition:none!important}
+      html.anim-ready .seam__word{opacity:1!important;transition:none!important}
     }
 
     .cta{position:fixed;right:clamp(14px,2.4vw,28px);bottom:clamp(14px,2.4vw,28px);z-index:80;
@@ -112,6 +143,9 @@
       .say__grid{grid-template-columns:1fr}
       .contact__grid{grid-template-columns:1fr 1fr;gap:22px}
       .shot__num{font-size:clamp(72px,26vw,150px)}
+      .seam{--panelH:clamp(170px,30vh,260px)}
+      .seam__meta{gap:8px}
+      .seam__meta .v{font-size:clamp(12px,3.4vw,15px)}
     }
   </style>
   <script>
@@ -121,27 +155,29 @@
 </head>
 <body>
 
-  <!-- ============ HERO (LEINEPERIN-faithful poster) ============ -->
-  <section class="hero wrap">
-    <div class="meta3">
-      <span class="lab">ТЯП-ЛЯП — дизайнерский ремонт</span>
-      <nav aria-label="Меню"><a class="lab" href="#manifest">Манифест</a><a class="lab" href="#work">Проекты</a><a class="lab" href="#contact">Контакты</a></nav>
-      <span class="lab">Фото · Дизайн — VICL</span>
+  <!-- ============ HERO (retro-poster seam: word straddles panel → photo) ============ -->
+  <section class="hero seam">
+    <div class="seam__panel">
+      <div class="seam__head">
+        <b>ТЯП-ЛЯП</b>
+        <nav aria-label="Меню"><a class="lab" href="#manifest">Манифест</a><a class="lab" href="#work">Проекты</a><a class="lab" href="#contact">Контакты</a></nav>
+      </div>
+      <div class="seam__meta seam__meta--top">
+        <div><span class="k">Студия</span><span class="v">Дизайнерский ремонт</span></div>
+        <div><span class="k">Локация</span><span class="v">Москва · МО</span></div>
+        <div><span class="k">Опыт</span><span class="v">с&nbsp;2019</span></div>
+      </div>
     </div>
 
-    <h1 class="display d1">ТЯП-ЛЯП</h1>
-    <p class="addr">Дизайнерский ремонт под&nbsp;ключ<br>Москва и&nbsp;Московская область<br>Без переплат · с&nbsp;2019</p>
+    <h1 class="seam__word">ТЯП-ЛЯП</h1>
 
-    <div class="shot">
-      <img src="assets/img/project-01.jpg" alt="Проект — кухня в бетоне" loading="eager" decoding="async" />
-      <div class="shot__num">*2026</div>
-      <p class="shot__cap">Камень, дерево, кирпич, бетон и&nbsp;правильный свет. Дизайн показывает фактуру материала, а&nbsp;не прячет неидеально ровную стену — для тех, кто ценит вещи со&nbsp;вкусом и&nbsp;устал от стандартного и&nbsp;бежевого.</p>
-    </div>
-
-    <div class="marks">
-      <span><i class="glyph"></i><b>ТЯП-ЛЯП</b></span>
-      <span class="lab">Designed differently</span>
-      <span><i class="glyph sq"></i><b>VICL</b></span>
+    <div class="seam__photo">
+      <img src="assets/img/project-01.jpg" alt="Дизайнерский ремонт — кухня в бетоне" loading="eager" decoding="async" />
+      <div class="seam__meta seam__meta--bot">
+        <div><span class="k">Материалы</span><span class="v">Бетон · дуб · камень</span></div>
+        <div><span class="k">Дизайн · фото</span><span class="v">VICL</span></div>
+        <div><span class="k">Год</span><span class="v">2026</span></div>
+      </div>
     </div>
   </section>
 
@@ -216,7 +252,7 @@
     var root=document.documentElement;
     if(!root.classList.contains('anim-ready')) return;       // animations disabled → content already visible
     try{
-      var sel='.meta3,.display,h2,.addr,.marks,.say__grid,.proj__sub,.contact__grid,.shot';
+      var sel='.meta3,.display,h2,.addr,.marks,.say__grid,.proj__sub,.contact__grid,.shot,.seam__meta,.seam__word,.seam__photo';
       var els=[].slice.call(document.querySelectorAll(sel));
       if(!els.length){ root.classList.remove('anim-ready'); return; }
       els.forEach(function(el){                               // per-block stagger index
