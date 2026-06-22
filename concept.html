@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <title>ТЯП-ЛЯП — концепт v2 (швейцарская типографика)</title>
+  <link rel="icon" href="favicon.png?v=3" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --ink:#111111; --paper:#ffffff; --mut:#7c7c7c; --mut2:#a6a6a6; --line:#e7e7e7;
+      --sans:'Helvetica Neue',Helvetica,Arial,sans-serif;
+      --serif:'Playfair Display',Georgia,serif;
+      --pad:clamp(18px,4vw,46px); --max:1200px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{-webkit-font-smoothing:antialiased}
+    body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.5;overflow-x:hidden}
+    img{display:block;max-width:100%}
+    /* film grain over everything */
+    .grain{position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.06;mix-blend-mode:multiply;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+    .wrap{max-width:var(--max);margin:0 auto;padding-inline:var(--pad)}
+    .lab{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
+
+    /* top meta bar */
+    .top{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;padding-block:16px;border-bottom:1px solid var(--line)}
+    .top span:nth-child(2){text-align:center}
+    .top span:last-child{text-align:right}
+
+    /* hero — giant wordmark over a blob-masked real photo (ark) */
+    .hero{padding-top:clamp(20px,4vw,40px)}
+    .hero__frame{position:relative}
+    .hero__photo{width:78%;margin:clamp(40px,7vw,90px) auto 0;aspect-ratio:16/11;object-fit:cover;clip-path:url(#blobA)}
+    .hero__word{position:absolute;top:0;left:0;width:100%;z-index:2}
+    .hero__word img{width:100%;height:auto}
+    .hero__row{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-top:clamp(18px,3vw,30px)}
+    .hero__tag{font-size:clamp(13px,1.4vw,16px);color:var(--mut);max-width:36ch}
+    .meta{display:grid;grid-template-columns:repeat(4,auto);gap:clamp(18px,4vw,52px)}
+    .meta .k{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--mut2)}
+    .meta .v{font-size:clamp(14px,1.5vw,17px);font-weight:500;margin-top:4px;letter-spacing:-.01em}
+
+    /* poster block — full-bleed real photo + giant outlined number (retro/LEINEPERIN) */
+    .poster{position:relative;margin-top:clamp(60px,9vw,130px)}
+    .poster__head{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;padding-bottom:12px}
+    .poster__head .v{font-size:clamp(13px,1.4vw,16px);font-weight:500;margin-top:3px}
+    .poster__head div:nth-child(2){text-align:center}
+    .poster__head div:last-child{text-align:right}
+    .poster__media{position:relative;overflow:hidden;aspect-ratio:16/10}
+    .poster__media img{width:100%;height:100%;object-fit:cover}
+    .poster__num{position:absolute;left:0;right:0;top:-.16em;text-align:center;z-index:2;
+      font-weight:800;font-size:clamp(120px,26vw,360px);line-height:1;letter-spacing:-.04em;
+      color:transparent;-webkit-text-stroke:2.5px rgba(255,255,255,.95);pointer-events:none}
+    .poster__cap{position:absolute;left:clamp(14px,2vw,26px);bottom:clamp(14px,2vw,26px);z-index:2;
+      max-width:34ch;color:#fff;font-size:clamp(12px,1.3vw,14px);line-height:1.5;text-shadow:0 1px 18px rgba(0,0,0,.55)}
+
+    /* big/small typographic statement */
+    .say{margin-top:clamp(64px,10vw,150px)}
+    .say h2{font-weight:800;font-size:clamp(40px,9vw,128px);line-height:.95;letter-spacing:-.04em;text-wrap:balance}
+    .say h2 i{font-family:var(--serif);font-weight:500;font-style:italic}
+    .say__grid{display:grid;grid-template-columns:1.3fr .7fr;gap:clamp(20px,5vw,70px);margin-top:clamp(22px,3vw,40px);align-items:start}
+    .say__lead{font-size:clamp(15px,1.7vw,20px);line-height:1.45;max-width:46ch}
+    .say__small{font-size:13px;line-height:1.6;color:var(--mut);text-align:justify}
+
+    /* footer */
+    .foot{margin-top:clamp(64px,10vw,140px);border-top:1px solid var(--line);padding-block:22px clamp(60px,8vw,90px);
+      display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+    .foot__bars{display:flex;gap:2px;align-items:flex-end;height:34px}
+    .foot__bars i{display:block;width:2px;background:var(--ink)}
+
+    /* persistent CTA (makevibe-style) */
+    .cta{position:fixed;right:clamp(14px,2.5vw,28px);bottom:clamp(14px,2.5vw,28px);z-index:70;
+      background:var(--ink);color:#fff;font-size:13px;font-weight:500;letter-spacing:.01em;
+      padding:13px 22px;border-radius:999px;text-decoration:none;
+      box-shadow:0 10px 40px rgba(0,0,0,.18)}
+
+    @media(max-width:720px){
+      .top,.poster__head{grid-template-columns:1fr 1fr}
+      .top span:nth-child(2),.poster__head div:nth-child(2){display:none}
+      .meta{grid-template-columns:1fr 1fr;gap:16px 24px}
+      .say__grid{grid-template-columns:1fr}
+      .hero__photo{width:100%}
+    }
+  </style>
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- responsive blob clip (objectBoundingBox → scales with the element) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+    <clipPath id="blobA" clipPathUnits="objectBoundingBox">
+      <path d="M0.52,0.02 C0.74,0 0.99,0.13 0.99,0.37 C1,0.57 0.9,0.75 0.72,0.87 C0.6,0.95 0.44,0.98 0.28,0.89 C0.12,0.8 0,0.61 0.02,0.39 C0.03,0.21 0.16,0.07 0.34,0.04 C0.41,0.03 0.46,0.025 0.52,0.02 Z"/>
+    </clipPath>
+  </defs></svg>
+
+  <div class="wrap">
+    <div class="top">
+      <span class="lab">ТЯП-ЛЯП — дизайнерский ремонт</span>
+      <span class="lab">(2026) · Москва и область</span>
+      <span class="lab">Концепт · v2</span>
+    </div>
+
+    <section class="hero">
+      <div class="hero__frame">
+        <img class="hero__photo" src="assets/img/project-01.jpg" alt="Кухня в бетоне" loading="eager" decoding="async" />
+        <h1 class="hero__word"><img src="assets/img/logo.png" alt="ТЯП-ЛЯП" /></h1>
+      </div>
+      <div class="hero__row">
+        <p class="hero__tag">Ремонт как дизайн-объект. Камень, дерево, кирпич, бетон и правильный свет — без «дорого-богато».</p>
+        <div class="meta">
+          <div><div class="k">Проектов</div><div class="v">12+</div></div>
+          <div><div class="k">Города</div><div class="v">МСК · МО</div></div>
+          <div><div class="k">Стиль</div><div class="v">Лофт / мин.</div></div>
+          <div><div class="k">Год</div><div class="v">2026</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="poster">
+      <div class="poster__head">
+        <div><div class="lab">Проект</div><div class="v">001 — Кухня в бетоне</div></div>
+        <div><div class="lab">Площадь</div><div class="v">48 м²</div></div>
+        <div><div class="lab">Локация · Год</div><div class="v">Москва · 2025</div></div>
+      </div>
+      <div class="poster__media">
+        <img src="assets/img/project-04.jpg" alt="Кирпичный лофт" loading="lazy" decoding="async" />
+        <div class="poster__num">2025</div>
+        <p class="poster__cap">Черновая → под ключ. Открытая планировка, микроцемент, дубовый шпон, скрытый свет. Дизайн показывает фактуру, а не прячет неидеальную стену.</p>
+      </div>
+    </section>
+
+    <section class="say">
+      <h2>Не «как‑нибудь».<br>А <i>как надо</i> — без переплат.</h2>
+      <div class="say__grid">
+        <p class="say__lead">«Тяп‑ляп» — это про скорость и честную цену, а не про халтуру. Мы делаем пространство для тех, кто был в Токио и Сеуле, любит уличную моду и вещи со вкусом — и кому надоело стандартное и бежевое.</p>
+        <p class="say__small">Сегмент — не эконом, где клеят обои. Это про «хочется круто, но не по цене квартиры». Дизайн важнее идеально ровной стены: красота в материале, свете и пропорции, а не в позолоте. Never&nbsp;Too&nbsp;Small по‑русски: маленький бюджет ≠ скучно.</p>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <span class="lab">© 2026 ТЯП-ЛЯП · Дизайн — VICL</span>
+      <div class="foot__bars" aria-hidden="true"></div>
+      <span class="lab">privet@tyap-lyap.ru</span>
+    </footer>
+  </div>
+
+  <a class="cta" href="#">рассчитать проект →</a>
+
+  <script>
+    // decorative barcode
+    var bars = document.querySelector('.foot__bars');
+    if (bars) { var h=[10,28,16,34,12,24,30,14,22,18,32,12,26,16,34,20]; var s=''; for (var i=0;i<h.length;i++){ s+='<i style="height:'+h[i]+'px"></i>'; } bars.innerHTML=s; }
+  </script>
+</body>
+</html>
