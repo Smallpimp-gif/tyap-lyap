@@ -51,9 +51,28 @@
       max-width:36ch;color:#fff;font-size:clamp(11px,1.1vw,13px);line-height:1.5;text-align:justify}
 
     /* hero is a full-screen retro-poster seam */
-    .hero.seam{padding-top:0}
-    .hero.seam .seam__photo{height:calc(100svh - var(--panelH));min-height:340px}
-    .hero.seam .seam__meta--bot{padding-bottom:clamp(92px,11vh,120px)} /* clear the persistent CTA */
+    /* HERO — retro KNOCKOUT: photo shows THROUGH the giant word (background-clip:text) */
+    .hero.knock{position:relative;height:100svh;min-height:580px;overflow:hidden;
+      background:#000;--panelH:clamp(220px,42vh,460px)}
+    .kphoto{position:absolute;inset:0;z-index:0}
+    .kphoto img{width:100%;height:100%;object-fit:cover}
+    .kphoto::after{content:"";position:absolute;left:0;right:0;bottom:0;height:38%;
+      background:linear-gradient(transparent,rgba(0,0,0,.6))}
+    .kpanel{position:absolute;top:0;left:0;right:0;height:var(--panelH);background:#000;z-index:1}
+    /* the word is filled with the photo, fixed to the viewport so it lines up with the open photo */
+    .kword{position:absolute;top:var(--panelH);left:0;right:0;transform:translateY(-54%);z-index:2;margin:0;
+      text-align:center;font-weight:900;font-size:clamp(74px,19vw,310px);line-height:.78;
+      letter-spacing:-.05em;text-transform:uppercase;
+      background-image:url("assets/img/hero.jpg");background-size:cover;background-position:center;
+      background-attachment:fixed;-webkit-background-clip:text;background-clip:text;
+      color:transparent;-webkit-text-fill-color:transparent}
+    .kmeta{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;justify-content:space-between;
+      padding-block:clamp(16px,2.3vw,28px);color:#fff}
+    .kmeta .seam__head b{color:#fff}
+    .kmeta .seam__head,.kmeta .seam__meta{padding-inline:var(--pad)}
+    .ktop{display:flex;flex-direction:column;gap:clamp(14px,2.4vw,26px)}
+    .kbot{padding-bottom:clamp(92px,11vh,120px)} /* clear the persistent CTA */
+    .visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
     /* ===== retro-poster seam: giant word straddling a colour panel → photo ===== */
     .seam{position:relative;--panelH:clamp(220px,40vh,440px);--seam-bg:var(--ink)}
@@ -70,7 +89,7 @@
     .seam__meta>div:nth-child(2){align-items:center;text-align:center}
     .seam__meta>div:last-child{align-items:flex-end;text-align:right}
     .seam__meta .k{font-size:clamp(10px,.85vw,12px);font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:rgba(255,255,255,.55)}
-    .seam__meta .v{font-size:clamp(13px,1.4vw,18px);font-weight:700;letter-spacing:-.01em}
+    .seam__meta .v{font-size:clamp(13px,1.4vw,18px);font-weight:700;letter-spacing:-.01em;color:#fff}
     .seam__word{position:absolute;left:0;right:0;top:var(--panelH);transform:translateY(-56%);
       margin:0;text-align:center;color:#fff;z-index:4;pointer-events:none;
       font-weight:900;font-size:clamp(72px,18.5vw,300px);line-height:.78;letter-spacing:-.045em;text-transform:uppercase}
@@ -130,14 +149,14 @@
       transition-delay:calc(var(--i,0)*.07s);will-change:opacity,transform}
     html.anim-ready :is(.shot,.seam__photo){clip-path:inset(0 0 100% 0);
       transition:clip-path 1.05s var(--ease);transition-delay:calc(var(--i,0)*.07s);will-change:clip-path}
-    html.anim-ready .seam__word{opacity:0;transition:opacity 1s var(--ease);transition-delay:.12s;will-change:opacity} /* opacity only — keeps straddle transform */
-    html.anim-ready .seam__word.in{opacity:1;will-change:auto}
+    html.anim-ready :is(.seam__word,.kword){opacity:0;transition:opacity 1s var(--ease);transition-delay:.12s;will-change:opacity} /* opacity only — keeps straddle transform */
+    html.anim-ready :is(.seam__word,.kword).in{opacity:1;will-change:auto}
     html.anim-ready :is(.meta3,.display,h2:not(.seam__word),.addr,.marks,.say__grid,.proj__sub,.contact__grid,.seam__meta,.shot,.seam__photo).in{
       opacity:1;transform:none;clip-path:inset(0 0 0 0);will-change:auto}
     @media(prefers-reduced-motion:reduce){
       html.anim-ready :is(.meta3,.display,h2:not(.seam__word),.addr,.marks,.say__grid,.proj__sub,.contact__grid,.seam__meta,.shot,.seam__photo){
         opacity:1!important;transform:none!important;clip-path:none!important;transition:none!important}
-      html.anim-ready .seam__word{opacity:1!important;transition:none!important}
+      html.anim-ready :is(.seam__word,.kword){opacity:1!important;transition:none!important}
     }
 
     .cta{position:fixed;right:clamp(14px,2.4vw,28px);bottom:clamp(14px,2.4vw,28px);z-index:80;
@@ -164,25 +183,26 @@
 </head>
 <body>
 
-  <!-- ============ HERO (retro-poster seam: word straddles panel → photo) ============ -->
-  <section class="hero seam">
-    <div class="seam__panel">
-      <div class="seam__head">
-        <b>ТЯП-ЛЯП</b>
-        <nav aria-label="Меню"><a class="lab" href="#manifest">Манифест</a><a class="lab" href="#work">Проекты</a><a class="lab" href="#contact">Контакты</a></nav>
-      </div>
-      <div class="seam__meta seam__meta--top">
-        <div><span class="k">Студия</span><span class="v">Дизайнерский ремонт</span></div>
-        <div><span class="k">Локация</span><span class="v">Москва · МО</span></div>
-        <div><span class="k">Опыт</span><span class="v">с&nbsp;2019</span></div>
-      </div>
-    </div>
+  <!-- ============ HERO (retro KNOCKOUT: photo shows THROUGH the giant word) ============ -->
+  <section class="hero knock">
+    <div class="kphoto"><img src="assets/img/hero.jpg" alt="Дизайнерский ремонт под ключ — интерьер" loading="eager" decoding="async" /></div>
 
-    <h1 class="seam__word">ТЯП-ЛЯП</h1>
+    <div class="kpanel" aria-hidden="true"></div>
+    <h1 class="kword">ТЯП-ЛЯП</h1>
 
-    <div class="seam__photo">
-      <img src="assets/img/hero.jpg" alt="Дизайнерский ремонт под ключ — интерьер" loading="eager" decoding="async" />
-      <div class="seam__meta seam__meta--bot">
+    <div class="kmeta">
+      <div class="ktop">
+        <div class="seam__head">
+          <b>ТЯП-ЛЯП</b>
+          <nav aria-label="Меню"><a class="lab" href="#manifest">Манифест</a><a class="lab" href="#work">Проекты</a><a class="lab" href="#contact">Контакты</a></nav>
+        </div>
+        <div class="seam__meta seam__meta--top">
+          <div><span class="k">Студия</span><span class="v">Дизайнерский ремонт</span></div>
+          <div><span class="k">Локация</span><span class="v">Москва · МО</span></div>
+          <div><span class="k">Опыт</span><span class="v">с&nbsp;2019</span></div>
+        </div>
+      </div>
+      <div class="seam__meta seam__meta--bot kbot">
         <div><span class="k">Материалы</span><span class="v">Бетон · дуб · камень</span></div>
         <div><span class="k">Дизайн · фото</span><span class="v">VICL</span></div>
         <div><span class="k">Год</span><span class="v">2026</span></div>
@@ -300,7 +320,7 @@
     var root=document.documentElement;
     if(!root.classList.contains('anim-ready')) return;       // animations disabled → content already visible
     try{
-      var sel='.meta3,.display,h2,.addr,.marks,.say__grid,.proj__sub,.contact__grid,.shot,.seam__meta,.seam__word,.seam__photo';
+      var sel='.meta3,.display,h2,.addr,.marks,.say__grid,.proj__sub,.contact__grid,.shot,.seam__meta,.seam__word,.seam__photo,.kword';
       var els=[].slice.call(document.querySelectorAll(sel));
       if(!els.length){ root.classList.remove('anim-ready'); return; }
       els.forEach(function(el){                               // per-block stagger index
