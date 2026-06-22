@@ -74,6 +74,15 @@
     .bknock{position:relative;height:clamp(560px,90vh,880px);overflow:hidden;background:#000;
       --panelH:clamp(190px,33vh,380px);margin-top:clamp(40px,6vw,84px)}
     .bknock .kbot{padding-bottom:clamp(18px,2.5vw,32px)}
+    .kcut>rect{fill:var(--panel-fill,#0e0e0e)} /* painted panel colour (mask rects unaffected) */
+    /* light variant — alternating white block: white panel, black top meta, photo through the word */
+    .bknock--light{background:#fff;--panel-fill:#fff}
+    .bknock--light .ktop,
+    .bknock--light .ktop .seam__head b,
+    .bknock--light .ktop .seam__meta .v{color:var(--ink)}
+    .bknock--light .ktop .seam__head .lab{color:var(--mut)}
+    .bknock--light .ktop .seam__head .lab:hover{color:var(--ink)}
+    .bknock--light .ktop .seam__meta .k{color:var(--mut2)}
 
     /* ===== retro-poster seam: giant word straddling a colour panel → photo ===== */
     .seam{position:relative;--panelH:clamp(220px,40vh,440px);--seam-bg:var(--ink)}
@@ -278,7 +287,7 @@
       </div>
     </article>
 
-    <article class="bknock">
+    <article class="bknock bknock--light">
       <div class="kphoto"><img src="assets/img/project-04.jpg" alt="Кирпичный лофт" loading="lazy" decoding="async" /></div>
       <svg class="kcut" preserveAspectRatio="none" aria-hidden="true">
         <defs><mask id="km2" maskUnits="userSpaceOnUse">
